@@ -45,10 +45,13 @@ export const AuctionDetails = () => {
                                 {auction.summary}
                             </p>
                             </article>
-                            { isOwner &&<Link to={`/auctions/edit/${auction._id}`}> Edit </Link>}
+                            { isOwner &&
+                            (<Link to={`/auctions/edit/${auction._id}`}> Edit </Link>)}
                             {/* Delete can be changed to buton!!! stay as link!!! can make a disabled edit form!!! */}
-                            {isOwner && <Link to={`/auctions/close/${auction._id}`}> Close Auction </Link> }
-                            {user &&<Link to="/"> Bid </Link> }
+                            {isOwner &&
+                            (<Link to={`/auctions/close/${auction._id}`}> Close Auction </Link>) }
+                            {user && !isOwner &&
+                            (<Link to="/"> Bid </Link>) }
                             <Link to="/auctions"> Back </Link>
                         </div>
                     </div>

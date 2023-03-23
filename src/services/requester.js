@@ -2,32 +2,32 @@
 
 const request = async (method, url, data, token) => {
 
-    const options = {};
+    const options = {
+        method,
+    };
 
-    if (method !== "GET") {
-        options.method = method;
+    if (data) {
+        options.headers = {
+            'content-type': 'application/json',
 
-        if (data) {
-            options.headers = {
-                'content-type': 'application/json',
+        };
 
-            };
-
-            options.body = JSON.stringify(data);
-        }
-
-
-        if (token) {
-            options.headers = {
-                ...options.headers,
-                "X-Authorization": token
-            };
-        }
+        options.body = JSON.stringify(data);
     }
 
-    console.log(options)
-    const response = await fetch(url, options);
 
+    if (token) {
+        options.headers = {
+            ...options.headers,
+            "X-Authorization": token
+        };
+    }
+
+
+    const response = await fetch(url, options);
+    if (response.status === 204) {
+        return;
+    }
     try {
 
         const result = await response.json();

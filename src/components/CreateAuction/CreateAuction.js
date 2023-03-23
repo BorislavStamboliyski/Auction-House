@@ -22,7 +22,7 @@ export const CreateAuction = () => {
     const onSubmitClick = async (e) => {
         e.preventDefault();
 
-        // Try catch should be done!!!
+        // Try catchshould be done
         await auctionService.createAuction(formValues, user.accessToken);
         navigate('/auctions');
     }

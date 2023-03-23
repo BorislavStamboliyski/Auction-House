@@ -25,9 +25,16 @@ function App() {
     }
 
     const onLogout =  () =>{
-        authService.logoutUser(user);
+        authService.logoutUser(user.accessToken);
         setUser();
     }
+
+
+    // To do object context to be given by provider!!!
+
+   
+    
+    
 
     return (
 

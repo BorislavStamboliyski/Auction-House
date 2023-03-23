@@ -18,7 +18,7 @@ export const loginUser = async (data) => {
 }
 
 
-export const logoutUser = () => {
-
-    request.get(`${baseurl}/logout`);
+export const logoutUser = (token) => {
+ 
+    request.get(`${baseurl}/logout`, null, token);
 }
