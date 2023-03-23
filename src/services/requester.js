@@ -1,6 +1,6 @@
 
 
-const request = async (method, url, data, user) => {
+const request = async (method, url, data, token) => {
 
     const options = {};
 
@@ -16,11 +16,16 @@ const request = async (method, url, data, user) => {
             options.body = JSON.stringify(data);
         }
 
-        
-        if (user) {
-            options.headers["X-Authorization"] = user.accessToken;
+
+        if (token) {
+            options.headers = {
+                ...options.headers,
+                "X-Authorization": token
+            };
         }
     }
+
+    console.log(options)
     const response = await fetch(url, options);
 
     try {

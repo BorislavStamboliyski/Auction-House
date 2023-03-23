@@ -10,6 +10,12 @@ export const useForm = (initialState) => {
     }
 
 
-    return {formValues, onChangeHandler}
+    const changeFormValues = (newValues) => {
+
+        // To do validation if newvalues are same initial values
+        setFormValues(newValues)
+    }
+
+    return {formValues, onChangeHandler, changeFormValues}
 
 }

@@ -12,7 +12,6 @@ export const CreateAuction = () => {
     const {user} = useContext(userContext)
     const navigate = useNavigate();
     const { formValues, onChangeHandler } = useForm({
-        ownerId: user._id,
         name: '',
         category: 'estate',
         price: '',
@@ -22,8 +21,9 @@ export const CreateAuction = () => {
 
     const onSubmitClick = async (e) => {
         e.preventDefault();
-        
-        await auctionService.createAuction(formValues, user);
+
+        // Try catch should be done!!!
+        await auctionService.createAuction(formValues, user.accessToken);
         navigate('/auctions');
     }
 

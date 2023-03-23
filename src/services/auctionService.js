@@ -21,9 +21,28 @@ export const getAuction = async (auctionId) => {
 }
 
 
-export const createAuction = async (data, user) => {
+export const createAuction = async (data, token) => {
    
-    const auction = await requester.post(baseUrl, data, user);
+    const auction = await requester.post(baseUrl, data, token);
 
     return auction;
+}
+
+
+export const editAuction = async (data, auctionId ,token) => {
+
+    const auction = await requester.put(`${baseUrl}/${auctionId}`, data, token);
+
+    return auction;
+
+}
+
+
+
+export const closeAuction = async (auctionId, token) => {
+
+    console.log(auctionId)
+    console.log(token)
+    await requester.del(`${baseUrl}/${auctionId}`,null, token);
+
 }

@@ -24,7 +24,9 @@ export const Register = () => {
     const onSubmitClick = async (e) => {
         e.preventDefault();
         if(formValues.username.length !== 0 && formValues.email.length !==0 && formValues.password.length !== 0  && formValues.repeatPassword !== 0){
-           const user = await authService.registerUser(formValues);
+            const {repeatPassword, ...data} = formValues
+           const user = await authService.registerUser(data);
+           
             onLogin(user);
             navigate('/')
         } else {

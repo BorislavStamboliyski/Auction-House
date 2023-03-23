@@ -12,6 +12,7 @@ import { userContext } from "./contexts/userContext";
 import { useState } from "react";
 import * as authService from './services/authService'
 import { EditAuction } from "./components/EditAuction/EditAucttion";
+import { CloseAuction } from "./components/CloseAuction/CloseAuction";
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
     const [user, setUser] = useState();
     
     const onLogin =  (result) => {
-       
+      
         setUser(result);
     }
 
@@ -39,8 +40,9 @@ function App() {
                     <Route path="/contacts" element={< Contacts />} />
                     <Route path="/auctions" element={< Auctions />} />
                     <Route path="/auctions/create" element={< CreateAuction />} />
-                    <Route path="/auctions/edit/:auctionId" element={< EditAuction />} />
                     <Route path="/auctions/:auctionId" element={< AuctionDetails />} />
+                    <Route path="/auctions/edit/:auctionId" element={< EditAuction />} />
+                    <Route path="/auctions/close/:auctionId" element={< CloseAuction />} />
                     <Route path="/register" element={< Register />} />
                     <Route path="/login" element={<Login />} />
 
