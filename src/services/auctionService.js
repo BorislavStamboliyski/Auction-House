@@ -41,8 +41,7 @@ export const editAuction = async (data, auctionId ,token) => {
 
 export const closeAuction = async (auctionId, token) => {
 
-    console.log(auctionId)
-    console.log(token)
     await requester.del(`${baseUrl}/${auctionId}`,null, token);
 
 }
+
