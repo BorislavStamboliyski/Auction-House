@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"
-import * as auctionService from '../../services/auctionService'
 import { useUserContext } from "../../contexts/userContext";
-import { Bid } from "../Auctions/AuctionItems/Bids/Bid";
+
+
+import * as auctionService from '../../services/auctionService'
 import * as bidService from '../../services/bidService'
+
+import { Bid } from './Bids/Bid'
 
 // To fix categories to have better name!!
 export const AuctionDetails = () => {
@@ -13,6 +16,9 @@ export const AuctionDetails = () => {
     const [auction, setAuction] = useState({});
     const [bids, setBids] = useState([]);
     const [bidForm, setBidform] = useState(false)
+
+
+    
 
     useEffect(() => {
         Promise.all([
@@ -25,20 +31,24 @@ export const AuctionDetails = () => {
 
     }, [auctionId])
 
-
-    const higherBidder = bids.length !== 0 ? bids.reduce((prev, curr) => prev.bid > curr.bid ? prev : curr) : {};
-
-
-    const isOwner = userId === auction._ownerId;
-
     const onBidClick = () => {
 
         setBidform(true);
 
     }
 
+    const onBidSubmit = () => {
+        setBidform(false)
+    }
+
+
+    const higherBidder = bids.length !== 0 ? bids.reduce((prev, curr) => Number(prev.bid) > Number(curr.bid) ? prev : curr) : {};
+
+
+    const isOwner = userId === auction._ownerId;
+
     return (
-        <>{bidForm && (<Bid auctionId={auctionId} />)}
+        <>{bidForm && (<Bid auctionId={auctionId} onBidSubmit={onBidSubmit}/>)}
             <section className="details_section">
                 <div className="container-fluid">
                     <div className="row">
@@ -61,14 +71,15 @@ export const AuctionDetails = () => {
                                     <p>
                                         {auction.summary}
                                     </p>
-                                    {bids.length !== 0 ?
+                                    { isAuthenticated && (
+                                    bids.length !== 0 ?
                                         <div>Current highest bid: {`${higherBidder.bid}`}$ by {`${higherBidder.bidder.username}`}</div>
                                         : <div>No current bids</div>
-                                    }
+                                    )
+                                }
                                 </article>
-                                {isOwner &&
+                                {isOwner && bids.length === 0 &&
                                     (<Link to={`/auctions/edit/${auction._id}`}> Edit </Link>)}
-                                {/* Delete can be changed to buton!!! stay as link!!! can make a disabled edit form!!! */}
                                 {isOwner &&
                                     (<Link to={`/auctions/close/${auction._id}`}> Close Auction </Link>)}
                                 {isAuthenticated && !isOwner &&

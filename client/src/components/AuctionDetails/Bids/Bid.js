@@ -1,14 +1,15 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { useForm } from '../../../../hooks/useForm'
-import { useUserContext } from '../../../../contexts/userContext';
+import { useForm } from '../../../hooks/useForm'
+import { useUserContext } from '../../../contexts/userContext';
 
-import * as bidService from '../../../../services/bidService';
+import * as bidService from '../../../services/bidService';
 
 
 export const Bid = ({
     auctionId,
+    onBidSubmit
 }) => {
 
     const { token } = useUserContext();
@@ -20,7 +21,8 @@ export const Bid = ({
     const onSubmitClick = async (e) => {
         e.preventDefault();
 
-        await bidService.postBid(auctionId, formValues.bid, token)
+       const bid = await bidService.postBid(auctionId, formValues.bid, token)
+       onBidSubmit(bid);
     }
 
     return (

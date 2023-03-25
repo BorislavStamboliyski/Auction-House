@@ -68,7 +68,7 @@ export const CloseAuction = () => {
 
                                         <div className="form-outline mb-4">
                                             <input type="text" id="form3Example4cg" name="price" className="form-control form-control-lg" value={formValues.price} disabled />
-                                            <label className="form-label" htmlFor="form3Example4cg">Price:</label>
+                                            <label className="form-label" htmlFor="form3Example4cg">Starting Price:</label>
                                         </div>
 
                                         <div className="form-outline mb-4">
