@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useParams, Link } from "react-router-dom"
 import { useUserContext } from "../../contexts/userContext";
 
@@ -7,27 +7,31 @@ import * as auctionService from '../../services/auctionService'
 import * as bidService from '../../services/bidService'
 
 import { Bid } from './Bids/Bid'
+import { auctionReducer } from "../../reducers/auctionReducer";
 
 // To fix categories to have better name!!
 export const AuctionDetails = () => {
 
-    const { userId, isAuthenticated } = useUserContext();
+    const { userId, isAuthenticated, token, username } = useUserContext();
     const { auctionId } = useParams();
-    const [auction, setAuction] = useState({});
-    const [bids, setBids] = useState([]);
+    const [auction, dispatch] = useReducer(auctionReducer, {})
     const [bidForm, setBidform] = useState(false)
 
 
-    
+
 
     useEffect(() => {
         Promise.all([
             auctionService.getAuction(auctionId),
             bidService.getBids(auctionId)
-        ]).then(result => {
-            setAuction(result[0])
-            setBids(result[1])
-        })
+        ]).then(([auctionData, bids]) => {
+            const auctionState = {
+                ...auctionData,
+                bids,
+            }
+
+            dispatch({ type: 'FETCH_AUCTION', payload: auctionState })
+        });
 
     }, [auctionId])
 
@@ -37,18 +41,39 @@ export const AuctionDetails = () => {
 
     }
 
-    const onBidSubmit = () => {
-        setBidform(false)
+    const onBidSubmit = async (e, formValues) => {
+        e.preventDefault();
+        if (Number(higherBidder.bid)) {
+            if (Number(formValues.bid) > Number(higherBidder.bid)) {
+                const bid = await bidService.postBid(auctionId, formValues.bid, token)
+                dispatch({
+                    type: 'ADD_BID',
+                    payload: bid,
+                    username,
+                });
+                setBidform(false)
+            } else {
+                console.log("need higher bid");
+            }
+        } else {
+            const bid = await bidService.postBid(auctionId, formValues.bid, token)
+            dispatch({
+                type: 'ADD_BID',
+                payload: bid,
+                username,
+            });
+            setBidform(false)
+        }
     }
-
-
-    const higherBidder = bids.length !== 0 ? bids.reduce((prev, curr) => Number(prev.bid) > Number(curr.bid) ? prev : curr) : {};
-
-
     const isOwner = userId === auction._ownerId;
 
+    let higherBidder = {};
+    if (auction.bids?.length) {
+        higherBidder = auction.bids.reduce((prev, curr) => Number(prev.bid) > Number(curr.bid) ? prev : curr);
+    }
+
     return (
-        <>{bidForm && (<Bid auctionId={auctionId} onBidSubmit={onBidSubmit}/>)}
+        <>{bidForm && (<Bid onBidSubmit={onBidSubmit} />)}
             <section className="details_section">
                 <div className="container-fluid">
                     <div className="row">
@@ -71,14 +96,13 @@ export const AuctionDetails = () => {
                                     <p>
                                         {auction.summary}
                                     </p>
-                                    { isAuthenticated && (
-                                    bids.length !== 0 ?
-                                        <div>Current highest bid: {`${higherBidder.bid}`}$ by {`${higherBidder.bidder.username}`}</div>
-                                        : <div>No current bids</div>
-                                    )
-                                }
+                                    {isAuthenticated && auction.bids?.length &&
+                                        (<div>Current highest bid: {`${higherBidder.bid}`}$ by {`${higherBidder.bidder.username}`}</div>)
+                                    }
+                                    {isAuthenticated && !auction.bids?.length &&
+                                        (<div>No current bids</div>)}
                                 </article>
-                                {isOwner && bids.length === 0 &&
+                                {isOwner && !auction.bids &&
                                     (<Link to={`/auctions/edit/${auction._id}`}> Edit </Link>)}
                                 {isOwner &&
                                     (<Link to={`/auctions/close/${auction._id}`}> Close Auction </Link>)}
