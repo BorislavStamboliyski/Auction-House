@@ -1,15 +1,14 @@
 import { Navigation } from "../Navigation/Navigation";
 import * as auctionService from "../../services/auctionService"
 import { useForm } from "../../hooks/useForm";
-import { useContext } from "react";
-import { userContext } from "../../contexts/userContext";
+import { useUserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 
 // Fix some images and validations!!
 
 export const CreateAuction = () => {
 
-    const {user} = useContext(userContext)
+    const {token} = useUserContext();
     const navigate = useNavigate();
     const { formValues, onChangeHandler } = useForm({
         name: '',
@@ -23,7 +22,7 @@ export const CreateAuction = () => {
         e.preventDefault();
 
         // Try catchshould be done
-        await auctionService.createAuction(formValues, user.accessToken);
+        await auctionService.createAuction(formValues, token);
         navigate('/auctions');
     }
 
@@ -58,7 +57,7 @@ export const CreateAuction = () => {
 
                                         <div className="form-outline mb-4">
                                             <input type="text" id="form3Example4cg" name="price" className="form-control form-control-lg" value={formValues.price} onChange={onChangeHandler} />
-                                            <label className="form-label" htmlFor="form3Example4cg">Price:</label>
+                                            <label className="form-label" htmlFor="form3Example4cg">Starting Price:</label>
                                         </div>
 
                                         <div className="form-outline mb-4">

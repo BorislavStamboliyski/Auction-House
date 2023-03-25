@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AuctionItems } from "../AuctionItems/AuctionItems";
+import { AuctionItems } from "./AuctionItems/AuctionItems";
 import * as auctionService from '../../services/auctionService'
 import { Navigation } from "../Navigation/Navigation";
 

@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { userContext } from "../../contexts/userContext";
+import { useEffect } from "react";
+import { useUserContext } from "../../contexts/userContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import * as auctionService from '../../services/auctionService'
@@ -9,7 +9,7 @@ import { Navigation } from "../Navigation/Navigation";
 
 export const CloseAuction = () => {
 
-    const {user} = useContext(userContext);
+    const {token} = useUserContext();
     const {auctionId} = useParams();
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ export const CloseAuction = () => {
         e.preventDefault();
 
         // Try catch should be done
-        await auctionService.closeAuction(auctionId, user.accessToken);
+        await auctionService.closeAuction(auctionId, token);
         navigate(`/auctions`);
     }
 

@@ -1,27 +1,35 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"
 import * as auctionService from '../../services/auctionService'
-import { useContext } from "react";
-import { userContext } from "../../contexts/userContext";
-import { Bid } from "../AuctionItems/assets/Bid";
+import { useUserContext } from "../../contexts/userContext";
+import { Bid } from "../Auctions/AuctionItems/Bids/Bid";
+import * as bidService from '../../services/bidService'
 
 // To fix categories to have better name!!
 export const AuctionDetails = () => {
 
-    const { user } = useContext(userContext);
+    const { userId, isAuthenticated } = useUserContext();
     const { auctionId } = useParams();
     const [auction, setAuction] = useState({});
-    useEffect(() => {
-        auctionService.getAuction(auctionId)
-            .then(result => {
-                setAuction(result);
+    const [bids, setBids] = useState([]);
+    const [bidForm, setBidform] = useState(false)
 
-            })
+    useEffect(() => {
+        Promise.all([
+            auctionService.getAuction(auctionId),
+            bidService.getBids(auctionId)
+        ]).then(result => {
+            setAuction(result[0])
+            setBids(result[1])
+        })
 
     }, [auctionId])
 
-    const isOwner = user?._id === auction._ownerId;
-    const [bidForm, setBidform] = useState(false)
+
+    const higherBidder = bids.length !== 0 ? bids.reduce((prev, curr) => prev.bid > curr.bid ? prev : curr) : {};
+
+
+    const isOwner = userId === auction._ownerId;
 
     const onBidClick = () => {
 
@@ -30,7 +38,7 @@ export const AuctionDetails = () => {
     }
 
     return (
-        <>{bidForm && (<Bid auctionId={auctionId}/>)}
+        <>{bidForm && (<Bid auctionId={auctionId} />)}
             <section className="details_section">
                 <div className="container-fluid">
                     <div className="row">
@@ -47,19 +55,23 @@ export const AuctionDetails = () => {
                                         {auction.name}
                                     </h2>
                                     <h4>Category:  {auction.category}</h4>
-                                    <h4>Price: {auction.price} $</h4>
+                                    <h4>Starting Price: {auction.price}$</h4>
                                 </div>
                                 <article>
                                     <p>
                                         {auction.summary}
                                     </p>
+                                    {bids.length !== 0 ?
+                                        <div>Current highest bid: {`${higherBidder.bid}`}$ by {`${higherBidder.bidder.username}`}</div>
+                                        : <div>No current bids</div>
+                                    }
                                 </article>
                                 {isOwner &&
                                     (<Link to={`/auctions/edit/${auction._id}`}> Edit </Link>)}
                                 {/* Delete can be changed to buton!!! stay as link!!! can make a disabled edit form!!! */}
                                 {isOwner &&
                                     (<Link to={`/auctions/close/${auction._id}`}> Close Auction </Link>)}
-                                {user && !isOwner &&
+                                {isAuthenticated && !isOwner &&
                                     (<Link to={`/auctions/${auctionId}`} onClick={onBidClick}> Bid </Link>)}
                                 <Link to="/auctions"> Back </Link>
                             </div>

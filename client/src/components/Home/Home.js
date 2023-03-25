@@ -6,8 +6,9 @@ import { Navigation } from "../Navigation/Navigation";
 export const Home = () => {
     return (
         <>
-           < Navigation />
             < Header />
+           {/* < Navigation /> */}
+          
             <section className=" slider_section position-relative">
              
                 <div id="carouselExampleControls" className="carousel slide " data-ride="carousel">

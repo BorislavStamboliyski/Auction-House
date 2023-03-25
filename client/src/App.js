@@ -8,37 +8,19 @@ import { Auctions } from "./components/Auctions/Auctions";
 import { Login } from "./components/Login/Login"
 import { AuctionDetails } from "./components/AuctionDetails/AuctionDetails";
 import { CreateAuction } from "./components/CreateAuction/CreateAuction";
-import { userContext } from "./contexts/userContext";
-import { useState } from "react";
-import * as authService from './services/authService'
+
+import { UserProvider } from "./contexts/userContext";
+
 import { EditAuction } from "./components/EditAuction/EditAucttion";
 import { CloseAuction } from "./components/CloseAuction/CloseAuction";
 
 function App() {
 
 
-    const [user, setUser] = useState();
-    
-    const onLogin =  (result) => {
-      
-        setUser(result);
-    }
-
-    const onLogout =  () =>{
-        authService.logoutUser(user.accessToken);
-        setUser();
-    }
-
-
-    // To do object context to be given by provider!!!
-
-   
-    
-    
 
     return (
 
-        <userContext.Provider value={{user, onLogin, onLogout}}>
+        <UserProvider>
             <div className="App">
 
                 <Routes>
@@ -57,7 +39,7 @@ function App() {
 
 
             </div>
-        </userContext.Provider>
+        </UserProvider>
     );
 }
 

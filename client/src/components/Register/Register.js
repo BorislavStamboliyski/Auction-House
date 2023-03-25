@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 import * as authService from "../../services/authService"
 import { useForm } from "../../hooks/useForm"
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { userContext } from "../../contexts/userContext";
+import { useUserContext } from "../../contexts/userContext";
 
 // Do some validations!!!
 
 export const Register = () => {
 
-    const {onLogin} = useContext(userContext);
-
+    const {onLogin} = useUserContext();
     const { formValues, onChangeHandler } = useForm({
         username: '',
         email: '',

@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { loginUser } from "../../services/authService"
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { userContext } from "../../contexts/userContext";
+
+import { useUserContext } from "../../contexts/userContext";
 
 
 export const Login = () => {
 
-    const {onLogin} = useContext(userContext); 
+    const { onLogin } = useUserContext(); 
 
     const { formValues, onChangeHandler } = useForm({
         email: '',
@@ -22,6 +22,7 @@ export const Login = () => {
         e.preventDefault();
 
         const user = await loginUser(formValues);
+
         onLogin(user);
         navigate('/')
     }

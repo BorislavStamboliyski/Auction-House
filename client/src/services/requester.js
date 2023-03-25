@@ -34,7 +34,7 @@ const request = async (method, url, data, token) => {
         return result;
 
     } catch (err) {
-        return [];
+        return {};
     }
 
 }

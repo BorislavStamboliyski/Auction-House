@@ -32,6 +32,7 @@ body {
 .sub_page .brand_box {
   position: relative;
   background-image: url(../images/slider-img.jpg);
+  margin-top: 5px;
   padding: 45px 0;
 }
 
@@ -57,7 +58,7 @@ body {
 .brand_box .navbar-brand span {
   font-size: 34px;
   font-weight: bold;
-  color: #ffffff;
+  color: #FF9671;
   text-transform: uppercase;
 }
 
@@ -81,6 +82,7 @@ a:focus {
 
 .custom_nav-container {
   z-index: 99999;
+  margin-top: 60px;
   padding: 15px 0;
 }
 
