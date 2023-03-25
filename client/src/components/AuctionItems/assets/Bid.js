@@ -2,24 +2,35 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useForm } from '../../../hooks/useForm';
 import * as bidService from '../../../services/bidService';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { userContext } from '../../../contexts/userContext';
 
 export const Bid = ({
     auctionId,
 }) => {
 
+    // Need to sort bids from higher rank
+    const[bids, setBids] = useState([]);
     const {user} = useContext(userContext);
 
     const {formValues, onChangeHandler} = useForm({
-        [auctionId] : {
-            bid : ''}
+            'auctionId' : auctionId,  
+            bid : ''
     })
 
     const onSubmitClick = (e) => {
         e.preventDefault();
 
         bidService.postBid(auctionId, formValues, user.accessToken )
+    }
+
+
+    const getBids = async () => {
+        const result = await bidService.getBids(user.accessToken);
+    
+        
+        setBids(result.filter(x => x.auctionId === auctionId ? x : null ))
+        console.log(bids);
     }
 
   return (
@@ -30,6 +41,9 @@ export const Bid = ({
       </Form.Group>
       <Button variant="primary" type="submit">
         Bid
+      </Button>
+      <Button variant="primary" type="button" onClick={getBids}>
+        Show bids
       </Button>
     </Form>
   );

@@ -8,5 +8,12 @@ export const postBid = async (auctionId, data, token) => {
 
     const bid = await requester.post(`${baseUrl}`, data, token );
 
-    console.log(bid);
+    return bid;
+}
+
+
+export const getBids = async (token) => {
+    const bids = await requester.get(baseUrl, null , token);
+
+    return bids;
 }
