@@ -13,9 +13,10 @@ export const About = () => {
     }
 
     return (
-
+        <>
+        <Header />
         <section className="about_section">
-            <Header />
+           
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6 px-0">
@@ -55,5 +56,6 @@ export const About = () => {
                 </div>
             </div>
         </section>
+        </>
     );
 }

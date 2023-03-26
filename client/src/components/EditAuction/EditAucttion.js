@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Navigation } from "../Navigation/Navigation";
 import { useUserContext } from "../../contexts/userContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { Error } from "../Error/Error";
 import * as auctionService from '../../services/auctionService'
+import { Header } from "../Header/Header";
 
 
 export const EditAuction =  () => {
@@ -47,13 +47,14 @@ export const EditAuction =  () => {
     }
 
     return(
+        <><Header/>
         <section className="vh-100 bg-image"
             style={{ backgroundImage: "url('/images/assortment-of-colorful-ripe-tropical-fruits-top-royalty-free-image-995518546-1564092355.jpg')" }}>
 
             <div className="mask d-flex align-items-center h-100 gradient-custom-3">
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
-                        <Navigation />
+                        
                         <div className="col-12 col-md-9 col-lg-7 col-xl-6">
                             <div className="card" style={{ borderRadius: "15px" }}>
                                 <div className="card-body p-5">
@@ -72,6 +73,8 @@ export const EditAuction =  () => {
                                                 <option value="estate">Real Estate</option>
                                                 <option value="vehicle">Vehicles</option>
                                                 <option value="electronics">Electronics</option>
+                                                <option value="furniture">Furniture</option>
+                                                <option value="other">Other</option>
                                             </select>
                                         </div>
 
@@ -104,6 +107,6 @@ export const EditAuction =  () => {
                 </div>
             </div>
         </section >
-
+        </>
     );
 }
