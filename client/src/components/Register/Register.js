@@ -4,12 +4,15 @@ import * as authService from "../../services/authService"
 import { useForm } from "../../hooks/useForm"
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/userContext";
+import { useState } from "react";
+import { Error } from "../Error/Error";
 
-// Do some validations!!!
+
 
 export const Register = () => {
 
-    const {onLogin} = useUserContext();
+    const { onLogin } = useUserContext();
+    const [error, setError] = useState(false);
     const { formValues, onChangeHandler } = useForm({
         username: '',
         email: '',
@@ -21,15 +24,23 @@ export const Register = () => {
 
     const onSubmitClick = async (e) => {
         e.preventDefault();
-        if(formValues.username.length !== 0 && formValues.email.length !==0 && formValues.password.length !== 0  && formValues.repeatPassword !== 0){
-            const {repeatPassword, ...data} = formValues
-           const user = await authService.registerUser(data);
-           
+        if (formValues.username.length !== 0 &&
+            formValues.email.length !== 0 &&
+            formValues.password.length !== 0 &&
+            formValues.repeatPassword !== 0 &&
+            formValues.password === formValues.repeatPassword) {
+            const { repeatPassword, ...data } = formValues
+            const user = await authService.registerUser(data);
             onLogin(user);
             navigate('/')
+            setError(false)
         } else {
-            console.log("All fields are required");
+            setError(true);
         }
+    }
+
+    const onOkClick = () => {
+        setError(false);
     }
 
     return (
@@ -44,21 +55,21 @@ export const Register = () => {
                             <div className="card" style={{ borderRadius: "15px" }}>
                                 <div className="card-body p-5">
                                     <h2 className="text-uppercase text-center mb-5">Create an account</h2>
-
+                                    {error && <Error onOkClick={onOkClick} />}
                                     <form onSubmit={onSubmitClick}>
 
                                         <div className="form-outline mb-4">
-                                            <input type="text" id="form3Example1cg" name="username" className="form-control form-control-lg" value={formValues.username} onChange={onChangeHandler}/>
+                                            <input type="text" id="form3Example1cg" name="username" className="form-control form-control-lg" value={formValues.username} onChange={onChangeHandler} />
                                             <label className="form-label" htmlFor="form3Example1cg" >Your Name</label>
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <input type="email" id="form3Example3cg" name="email" className="form-control form-control-lg" value={formValues.email} onChange={onChangeHandler}/>
+                                            <input type="email" id="form3Example3cg" name="email" className="form-control form-control-lg" value={formValues.email} onChange={onChangeHandler} />
                                             <label className="form-label" htmlFor="form3Example3cg">Your Email</label>
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <input type="password" id="form3Example4cg" name="password" className="form-control form-control-lg" value={formValues.password} onChange={onChangeHandler}/>
+                                            <input type="password" id="form3Example4cg" name="password" className="form-control form-control-lg" value={formValues.password} onChange={onChangeHandler} />
                                             <label className="form-label" htmlFor="form3Example4cg">Password</label>
                                         </div>
 

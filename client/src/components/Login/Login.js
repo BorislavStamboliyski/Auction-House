@@ -5,11 +5,14 @@ import { loginUser } from "../../services/authService"
 import { useNavigate } from "react-router-dom";
 
 import { useUserContext } from "../../contexts/userContext";
+import { useState } from "react";
+import { Error } from "../Error/Error";
 
 
 export const Login = () => {
 
     const { onLogin } = useUserContext(); 
+    const [error, setError] = useState(false);
 
     const { formValues, onChangeHandler } = useForm({
         email: '',
@@ -21,12 +24,21 @@ export const Login = () => {
     const onSubmitClick = async (e) => {
         e.preventDefault();
         
-            const user = await loginUser(formValues);
-            onLogin(user);
-            navigate('/')
-        
+            if(formValues.email && formValues.password ) {
+                const user = await loginUser(formValues);
+                onLogin(user);
+                navigate('/');
+                setError(false)
+            } else {
+                setError(true)
+            } 
         
     }
+
+    const onOkClick = () => {
+        setError(false);
+    }
+
     return (
         <section className="vh-100 bg-image"
             style={{ backgroundImage: "url('/images/assortment-of-colorful-ripe-tropical-fruits-top-royalty-free-image-995518546-1564092355.jpg')" }}>
@@ -39,6 +51,7 @@ export const Login = () => {
                             <div className="card" style={{ borderRadius: "15px" }}>
                                 <div className="card-body p-5">
                                     <h2 className="text-uppercase text-center mb-5">Login</h2>
+                                    {error && <Error onOkClick={onOkClick}/>}
                                     <form onSubmit={onSubmitClick}> 
                                         <div className="form-outline mb-4">
                                             <input type="email" id="form3Example3cg" name="email" className="form-control form-control-lg" value={formValues.email} onChange={onChangeHandler} />
