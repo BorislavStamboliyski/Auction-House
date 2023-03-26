@@ -12,9 +12,10 @@ export const registerUser = async (data) => {
 
 export const loginUser = async (data) => {
 
-    const user = await request.post(`${baseurl}/login`, data);
+        const user = await request.post(`${baseurl}/login`, data);
 
-    return user;
+        return user;
+   
 }
 
 

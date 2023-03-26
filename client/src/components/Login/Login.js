@@ -20,11 +20,12 @@ export const Login = () => {
 
     const onSubmitClick = async (e) => {
         e.preventDefault();
-
-        const user = await loginUser(formValues);
-
-        onLogin(user);
-        navigate('/')
+        
+            const user = await loginUser(formValues);
+            onLogin(user);
+            navigate('/')
+        
+        
     }
     return (
         <section className="vh-100 bg-image"

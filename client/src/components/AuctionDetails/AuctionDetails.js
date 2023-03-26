@@ -52,6 +52,7 @@ export const AuctionDetails = () => {
 
     const onBidSubmit = async (e, formValues) => {
         e.preventDefault();
+   
         if (Number(higherBidder.bid)) {
             if (Number(formValues.bid) > Number(higherBidder.bid) && Number(formValues.bid) > Number(auction.price)) {
                 const bid = await bidService.postBid(auctionId, formValues.bid, token)
@@ -61,12 +62,12 @@ export const AuctionDetails = () => {
                     username,
                 });
                 setBidform(false);
-
+                setError(false);
                 
             } else {
                 setError(true);
             }
-        } else {
+        } else if (!Number(higherBidder.bid) && Number(formValues.bid) > Number(auction.price)){
             const bid = await bidService.postBid(auctionId, formValues.bid, token)
             dispatch({
                 type: 'ADD_BID',
@@ -74,6 +75,9 @@ export const AuctionDetails = () => {
                 username,
             });
             setBidform(false)
+            setError(false)
+        } else {
+            setError(true);
         }
     }
     const isOwner = userId === auction._ownerId;
