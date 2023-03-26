@@ -1,4 +1,3 @@
-import { Navigation } from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 import * as authService from "../../services/authService"
 import { useForm } from "../../hooks/useForm"
@@ -6,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/userContext";
 import { useState } from "react";
 import { Error } from "../Error/Error";
+import { Header } from "../Header/Header";
 
 
 
@@ -50,7 +50,7 @@ export const Register = () => {
             <div className="mask d-flex align-items-center h-100 gradient-custom-3">
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
-                        <Navigation />
+                        <Header/>
                         <div className="col-12 col-md-9 col-lg-7 col-xl-6">
                             <div className="card" style={{ borderRadius: "15px" }}>
                                 <div className="card-body p-5">

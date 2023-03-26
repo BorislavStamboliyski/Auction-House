@@ -1,13 +1,12 @@
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 
-import { Navigation } from "../Navigation/Navigation";
+
 
 export const Home = () => {
     return (
         <>
             < Header />
-           {/* < Navigation /> */}
           
             <section className=" slider_section position-relative">
              
@@ -24,7 +23,7 @@ export const Home = () => {
                     </div>
                 </div>
             </section>
-            {/* < Info /> */}
+
             < Footer />
 
 

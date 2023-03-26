@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { AuctionItems } from "./AuctionItems/AuctionItems";
 import * as auctionService from '../../services/auctionService'
-import { Navigation } from "../Navigation/Navigation";
+import { Header } from "../Header/Header";
+
 
 
 
@@ -18,7 +19,7 @@ export const Auctions = () => {
 
     return (
         <>
-        <Navigation/>
+        <Header/>
         <section className="fruit_section layout_padding">
             <div className="container">
                 <div className="heading_container">

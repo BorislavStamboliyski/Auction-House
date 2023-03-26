@@ -1,11 +1,11 @@
+import { Header } from "../Header/Header";
 
-import { Navigation } from "../Navigation/Navigation";
 
 
 export const Contacts = () => {
     return (
         <>
-         <Navigation />
+         <Header/>
             <section className="contact_section layout_padding-bottom">
                 <div className="container-fluid">
                     <div className="row">

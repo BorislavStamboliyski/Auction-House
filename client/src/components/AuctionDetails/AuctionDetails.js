@@ -8,6 +8,7 @@ import * as bidService from '../../services/bidService'
 
 import { Bid } from './Bids/Bid'
 import { auctionReducer } from "../../reducers/auctionReducer";
+import { Header } from "../Header/Header";
 
 // To fix categories to have better name!!
 export const AuctionDetails = () => {
@@ -88,7 +89,9 @@ export const AuctionDetails = () => {
     }
 
     return (
-        <>{bidForm &&
+        <>
+        <Header/>
+        {bidForm &&
             (<div className="overlay">
                 <div className="overlay-content">
                     <Bid onBidSubmit={onBidSubmit} onCancelClick={onCancelClick} />

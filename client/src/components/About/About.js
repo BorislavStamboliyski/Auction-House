@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Navigation } from "../Navigation/Navigation";
+import { Header } from "../Header/Header";
 
 
 
@@ -10,7 +10,7 @@ export const About = () => {
     return (
         
         <section className="about_section">
-            <Navigation />
+            <Header/>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6 px-0">
