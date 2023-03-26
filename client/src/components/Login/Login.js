@@ -67,7 +67,7 @@ export const Login = () => {
                                             </div>
 
 
-                                            <div className="login_form-container">
+                                            <div className="button_form-container">
                                                 <button type="submit"
                                                     className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
                                             </div>

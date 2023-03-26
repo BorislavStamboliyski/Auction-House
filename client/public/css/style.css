@@ -186,12 +186,12 @@
  
 }
 
-.login_form-container button{
+.button_form-container button{
   margin-left: 227px;
   background-color: #6AD9EC;
   border-color: #028CB3;
 }
-.login_form-container button:hover{
+.button_form-container button:hover{
   background-color: #028CB3;
   border-color: #6AD9EC;
 }
@@ -213,6 +213,178 @@
  
 }
 /* End Register */
+
+/* Catalog Auctions */
+.auction_section .heading_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 100px;
+  margin-bottom: 35px;
+}
+
+.auction_section .heading_container hr {
+  width: 20%;
+  height: 1px;
+  border: none;
+  margin: 0;
+  margin-right: 10px;
+  background-color: #b7b7b7;
+}
+
+.auction_section .heading_container h2 {
+  margin-left: 0;
+  padding-left: 200px;
+}
+
+.auction_section .auction_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.auction_section .auction_container .box {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 31.33%;
+          flex: 0 0 31.33%;
+  margin: 1%;
+  position: relative;
+  overflow: hidden;
+  max-width: 500px;
+}
+
+.auction_section .auction_container .box img {
+  width: 100%;
+  max-width: 500px;
+  max-height: 300px;
+}
+
+.auction_section .auction_container .box .link_box {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: #252525;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.auction_section .auction_container .box .link_box h5 {
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.auction_section .auction_container .box .link_box a {
+  display: inline-block;
+  padding: 7px 35px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.auction_section .auction_container .box .link_box a:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.auction_section .auction_container .box:hover .link_box {
+  top: 0;
+  opacity: 0.9;
+}
+/* End catalog Auctions */
+
+/* Details */
+.details_section .img-box {
+  padding: 35px 0;
+  background-color: #ececec;
+}
+
+.details_section .img-box img {
+  width: 100%;
+  -webkit-transform: translateX(45px);
+          transform: translateX(45px);
+}
+
+.details_section .detail-box {
+  text-align: center;
+  padding: 35px 45px;
+}
+
+.details_section .detail-box .heading_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.details_section .detail-box .heading_container hr {
+  width: 1px;
+  height: 145px;
+  margin: 0;
+  border: none;
+  background-color: #b7b7b7;
+  margin-bottom: 10px;
+}
+
+.details_section .detail-box p {
+  margin-top: 10px;
+}
+
+.details_section .detail-box a {
+  display: inline-block;
+  padding: 10px 40px;
+  background-color: #313131;
+  border: 1px solid #313131;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.details_section .detail-box a:hover {
+  background-color: transparent;
+  color: #313131;
+}
+/* End details */
+
+/* Create and edit  */
+.bg-image_editCreate{
+  background-image: url('/images/fourthImg.jpg');
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center center;
+}
+/* End Create and edit */
+
 /* About page */
 .about_section {
   padding-top: 200px;
@@ -306,6 +478,11 @@ border-radius: 2px solid;
    margin-top: 20px;
 }
 
+.bid_heading{
+  font-family: 'Lobster', cursive;
+  font-size: 24px;
+  font-weight: bold;
+}
 
 /*End  Bid overlay */
 

@@ -17,7 +17,7 @@ export const Bid = ({
     return (
         <Form onSubmit={(e) => onBidSubmit(e, formValues)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Place your Bid:</Form.Label>
+                <Form.Label className='bid_heading'>Place your Bid:</Form.Label>
                 <Form.Control type="text" name="bid" placeholder="Place your bid here" value={formValues.bid} onChange={onChangeHandler} />
             </Form.Group>
             <div className='button-container'>

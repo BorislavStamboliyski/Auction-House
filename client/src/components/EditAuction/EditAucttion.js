@@ -50,9 +50,7 @@ export const EditAuction =  () => {
 
     return(
         <><Header/>
-        <section className="vh-100 bg-image"
-            style={{ backgroundImage: "url('/images/assortment-of-colorful-ripe-tropical-fruits-top-royalty-free-image-995518546-1564092355.jpg')" }}>
-
+        <section className="vh-100 bg-image_editCreate">
             <div className="mask d-flex align-items-center h-100 gradient-custom-3">
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -96,7 +94,7 @@ export const EditAuction =  () => {
                                         </div>
 
 
-                                        <div className="contact_form-container">
+                                        <div className="button_form-container">
                                             <button type="submit"
                                                 className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Publish</button>
                                         </div>

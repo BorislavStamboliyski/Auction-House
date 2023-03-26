@@ -22,7 +22,7 @@ export const Auctions = () => {
     return (
         <>
         <Header/>
-        <section className="fruit_section layout_padding">
+        <section className="auction_section layout_padding">
             <div className="container">
                 <div className="heading_container">
                     <hr />
@@ -33,7 +33,7 @@ export const Auctions = () => {
             </div>
             <div className="container-fluid">
 
-                <div className="fruit_container">
+                <div className="auction_container">
                     {auctions.length !== 0 ?
                         auctions.map((x) => <AuctionItems key={x._id}  {...x} />)
                         : <div>Nothing has been listed yet. Be the first!</div>}
