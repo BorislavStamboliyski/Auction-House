@@ -191,10 +191,12 @@
   margin-left: 227px;
   background-color: #6AD9EC;
   border-color: #028CB3;
+  color: black;
 }
 .button_form-container button:hover{
   background-color: #028CB3;
   border-color: #6AD9EC;
+  color: #fff;
 }
 
 .text-uppercase {
@@ -474,10 +476,10 @@
 
 .read_more{
 text-decoration: none;
-background-color:  #CFFCF9;
+background-color: #6AD9EC;
 margin-left: 150px;
 padding: 15px;
-font-size: 18px;
+font-size: 20px;
 color: black;
 border-radius: 2px solid;
 }

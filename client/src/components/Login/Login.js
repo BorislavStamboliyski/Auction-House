@@ -69,7 +69,7 @@ export const Login = () => {
 
                                             <div className="button_form-container">
                                                 <button type="submit"
-                                                    className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
+                                                    className="btn btn-success btn-block btn-lg gradient-custom-4 ">Login</button>
                                             </div>
 
                                             <p className="text-center text-muted mt-5 mb-0">Do not have an account? <Link to="/register"

@@ -83,7 +83,7 @@ export const Register = () => {
 
                                             <div className="button_form-container">
                                                 <button type="submit"
-                                                    className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                                                    className="btn btn-success btn-block btn-lg gradient-custom-4">Register</button>
                                             </div>
 
                                             <p className="text-center text-muted mt-5 mb-0">Have already an account? <Link to="/login"
