@@ -1,16 +1,17 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import { Route, Routes } from 'react-router-dom';
+
+import { UserProvider } from "./contexts/userContext";
+
 import { About } from "./components/About/About";
 import { Contacts } from "./components/Contacts/Contacts";
 import { Home } from "./components/Home/Home";
-import { Route, Routes } from 'react-router-dom';
 import { Register } from './components/Register/Register';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Auctions } from "./components/Auctions/Auctions";
 import { Login } from "./components/Login/Login"
 import { AuctionDetails } from "./components/AuctionDetails/AuctionDetails";
 import { CreateAuction } from "./components/CreateAuction/CreateAuction";
-
-import { UserProvider } from "./contexts/userContext";
-
 import { EditAuction } from "./components/EditAuction/EditAucttion";
 import { CloseAuction } from "./components/CloseAuction/CloseAuction";
 

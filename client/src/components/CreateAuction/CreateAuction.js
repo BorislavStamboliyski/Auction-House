@@ -1,12 +1,12 @@
-import * as auctionService from "../../services/auctionService"
-import { useForm } from "../../hooks/useForm";
-import { useUserContext } from "../../contexts/userContext";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useUserContext } from "../../contexts/userContext";
+import { useForm } from "../../hooks/useForm";
+import * as auctionService from "../../services/auctionService"
+
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
-
-// Fix some images and validations!!
 
 export const CreateAuction = () => {
 
@@ -37,21 +37,21 @@ export const CreateAuction = () => {
         setError(false)
     }
 
-    return ( <>
-  
-        <Header/>
+    return (<>
+
+        <Header />
         <section className="vh-100 bg-image"
             style={{ backgroundImage: "url('/images/assortment-of-colorful-ripe-tropical-fruits-top-royalty-free-image-995518546-1564092355.jpg')" }}>
 
             <div className="mask d-flex align-items-center h-100 gradient-custom-3">
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
-                        
+
                         <div className="col-12 col-md-9 col-lg-7 col-xl-6">
                             <div className="card" style={{ borderRadius: "15px" }}>
                                 <div className="card-body p-5">
                                     <h2 className="text-uppercase text-center mb-5">Publish an Auction</h2>
-                                    {error && (<Error onOkClick={onOkClick}/>)}
+                                    {error && (<Error onOkClick={onOkClick} />)}
                                     <form onSubmit={onSubmitClick}>
 
                                         <div className="form-outline mb-4">
@@ -99,7 +99,7 @@ export const CreateAuction = () => {
                 </div>
             </div>
         </section >
-        </>
+    </>
     );
 
 

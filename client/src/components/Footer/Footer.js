@@ -1,10 +1,9 @@
 
 export const Footer = () => {
     return (
-        <section className="container-fluid footer_section ">
+        <section className="footer">
             <p>
-                &copy; <span id="displayYear"></span> All Rights Reserved. Design by
-                <a href="https://html.design/">Free Html Templates</a>
+                &copy; <span> All Rights Reserved.</span>
             </p>
         </section>
     );

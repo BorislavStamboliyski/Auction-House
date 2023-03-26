@@ -1,8 +1,9 @@
 import { useEffect, useReducer, useState } from "react";
 import { useParams, Link } from "react-router-dom"
-import { useUserContext } from "../../contexts/userContext";
+
 import { Button } from "react-bootstrap";
 
+import { useUserContext } from "../../contexts/userContext";
 import * as auctionService from '../../services/auctionService'
 import * as bidService from '../../services/bidService'
 
@@ -10,7 +11,7 @@ import { Bid } from './Bids/Bid'
 import { auctionReducer } from "../../reducers/auctionReducer";
 import { Header } from "../Header/Header";
 
-// To fix categories to have better name!!
+
 export const AuctionDetails = () => {
 
     const { userId, isAuthenticated, token, username } = useUserContext();

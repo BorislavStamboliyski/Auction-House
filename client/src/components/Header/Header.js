@@ -1,21 +1,20 @@
-import { Link } from "react-router-dom";
 import { Navigation } from "../Navigation/Navigation";
 
 
 export const Header = () => {
     return (
-        <>
+        <div className="header">
         <div className="hero_area">
             <div className="brand_box">
-                <Link className="navbar-brand" to="/">
+                <div className="navbar-brand">
                     <span>
-                        Auction House
+                        Online Auction House
                     </span>
-                </Link>
+                </div>
           
             </div>
         </div>
         <Navigation/>
-        </>
+        </div>
     );
 }

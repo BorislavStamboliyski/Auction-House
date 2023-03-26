@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import * as authService from "../../services/authService"
-import { useForm } from "../../hooks/useForm"
-import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../contexts/userContext";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { useUserContext } from "../../contexts/userContext";
+import { useForm } from "../../hooks/useForm";
+import * as authService from "../../services/authService";
+
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
-
-
 
 export const Register = () => {
 
