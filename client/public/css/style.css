@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap');
 
 
 
@@ -68,10 +67,14 @@
 .menu li a {
   color: black;
   text-decoration: none;
-  font-family: 'Pacifico', cursive;
-  font-size: 16px;
+  font-family: 'Lobster', cursive;
+  font-size: 18px;
+  padding: 5px 15px;
 }
-
+.menu li a:hover{
+  background-color: #028CB3;
+  color: #fff;
+}
 .menu li a.active {
   font-weight: bold;
 }
@@ -173,6 +176,94 @@
 
 /* End home page */
 
+
+/* Login */
+.bg-image {
+  background-image: url('/images/firstImg.jpg');
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center center;
+ 
+}
+
+.login_form-container button{
+  margin-left: 227px;
+  background-color: #6AD9EC;
+  border-color: #028CB3;
+}
+.login_form-container button:hover{
+  background-color: #028CB3;
+  border-color: #6AD9EC;
+}
+
+.text-uppercase {
+  font-family: 'Pacifico', cursive;
+}
+/* End Login */
+
+/* Register */
+.vh-100{
+  margin-top: 50px;
+}
+.bg-image_register {
+  background-image: url('/images/firstImg.jpg');
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center center;
+ 
+}
+/* End Register */
+/* About page */
+.about_section {
+  padding-top: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.img-box {
+  position: relative;
+}
+
+.img-box img {
+  width: 80%;
+  padding-left: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.img-box img.active {
+  opacity: 1;
+}
+
+.detail-box {
+  padding-top: 50px;
+  margin-left: 150px;
+  max-width: 400px;
+}
+.heading_container h2{
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
+  text-align: center;
+}
+
+.read_more{
+text-decoration: none;
+background-color:  #CFFCF9;
+margin-left: 150px;
+padding: 15px;
+font-size: 18px;
+color: black;
+border-radius: 2px solid;
+}
+.read_more:hover{
+  background-color: #028CB3;
+  color: #fff;
+}
+
+/* end About page */
 
 /* Bid overlay */
 .overlay {
