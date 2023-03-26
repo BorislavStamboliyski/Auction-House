@@ -5,9 +5,10 @@ import * as requester from './requester'
 const baseUrl = "http://localhost:3030/data/bids"
 
 export const postBid = async (auctionId, bid, token) => {
-  
-    const newBid = await requester.post(baseUrl, {auctionId, bid}, token);
-    return newBid;
+
+        const newBid = await requester.post(baseUrl, {auctionId, bid}, token);
+        return newBid;
+    
 }
 
 
