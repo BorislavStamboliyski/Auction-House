@@ -178,13 +178,14 @@
 
 
 /* Login */
+
 .bg-image {
-  background-image: url('/images/firstImg.jpg');
-  background-repeat: no-repeat;
-  background-size: 70%;
-  background-position: center center;
- 
+  background-image: url('/images/firstImg.jpg'), url('/images/fourthImg.jpg');
+  background-position: left bottom 150px, right top 150px;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 600px 400px, 600px 400px;
 }
+
 
 .button_form-container button{
   margin-left: 227px;
@@ -206,10 +207,10 @@
   margin-top: 50px;
 }
 .bg-image_register {
-  background-image: url('/images/firstImg.jpg');
-  background-repeat: no-repeat;
-  background-size: 70%;
-  background-position: center center;
+  background-image: url('/images/firstImg.jpg'), url('/images/fourthImg.jpg');
+  background-position: right bottom 150px, left top 150px;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 600px 400px, 600px 400px;
  
 }
 /* End Register */
@@ -378,10 +379,10 @@
 
 /* Create and edit  */
 .bg-image_editCreate{
-  background-image: url('/images/fourthImg.jpg');
-  background-repeat: no-repeat;
-  background-size: 70%;
-  background-position: center center;
+  background-image: url('/images/fifthImg.jpg'), url('/images/sixthImg.jpg');
+  background-position: left bottom 150px, right top 150px;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 600px 400px, 600px 400px;
 }
 /* End Create and edit */
 
