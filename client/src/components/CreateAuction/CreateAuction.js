@@ -3,12 +3,15 @@ import * as auctionService from "../../services/auctionService"
 import { useForm } from "../../hooks/useForm";
 import { useUserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Error } from "../Error/Error";
 
 // Fix some images and validations!!
 
 export const CreateAuction = () => {
 
-    const {token} = useUserContext();
+    const { token } = useUserContext();
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
     const { formValues, onChangeHandler } = useForm({
         name: '',
@@ -20,10 +23,18 @@ export const CreateAuction = () => {
 
     const onSubmitClick = async (e) => {
         e.preventDefault();
+        if (formValues.name !== '' && formValues.category !== '' && formValues.price !== '' && formValues.imageUrl !== '' && formValues.summary !== '') {
+            await auctionService.createAuction(formValues, token);
+            setError(false);
+            navigate('/auctions');
+        } else {
+            setError(true)
+        }
 
-        // Try catchshould be done
-        await auctionService.createAuction(formValues, token);
-        navigate('/auctions');
+    }
+
+    const onOkClick = () => {
+        setError(false)
     }
 
     return (
@@ -38,7 +49,7 @@ export const CreateAuction = () => {
                             <div className="card" style={{ borderRadius: "15px" }}>
                                 <div className="card-body p-5">
                                     <h2 className="text-uppercase text-center mb-5">Publish an Auction</h2>
-
+                                    {error && (<Error onOkClick={onOkClick}/>)}
                                     <form onSubmit={onSubmitClick}>
 
                                         <div className="form-outline mb-4">
