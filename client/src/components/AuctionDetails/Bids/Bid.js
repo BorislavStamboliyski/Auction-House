@@ -21,10 +21,10 @@ export const Bid = ({
                 <Form.Control type="text" name="bid" placeholder="Place your bid here" value={formValues.bid} onChange={onChangeHandler} />
             </Form.Group>
             <div className='button-container'>
-            <Button variant="primary" type="submit">
+            <Button variant="info" type="submit" className='button_bid'>
                 Place Bid
             </Button>
-            <Button variant="primary" type="button" onClick={()=> onCancelClick()}>
+            <Button variant="info" type="button" className='button_bid' onClick={()=> onCancelClick()}>
                 Cancel
             </Button>
             </div>

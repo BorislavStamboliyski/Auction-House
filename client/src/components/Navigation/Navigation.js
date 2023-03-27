@@ -80,8 +80,8 @@ export const Navigation = () => {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="primary" onClick={onYesClick}>Yes</Button>
-                        <Button variant="secondary" onClick={onCancelClick}>No</Button>
+                        <Button variant="info" onClick={onYesClick}>Yes</Button>
+                        <Button variant="info" onClick={onCancelClick}>No</Button>
                     </Modal.Footer>
                 </Modal.Dialog>
             </div>}

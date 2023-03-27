@@ -107,41 +107,41 @@ export const AuctionDetails = () => {
                     )}
                     </div>
                 </div>)}
-                <section className="details_section">
+                <section className="details-section">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-md-6 px-0">
-                                <div className="img-box">
-                                    <img src={auction.imageUrl} alt="" />
+                            <div className="col-md-6">
+                                <div className="image-container">
+                                <div className="img-overlay">
+                                    <img src={auction.imageUrl} alt={`${auction.name}`} />
+                                </div>
                                 </div>
                             </div>
-                            <div className="col-md-5">
-                                <div className="detail-box">
-                                    <div className="heading_container">
-                                        <hr />
+                            <div className="col-md-6">
+                                <div className="details-container">
+                                    <div className="details-header">
                                         <h2>
-                                            {auction.name}
+                                           Auction Item: {auction.name}
                                         </h2>
                                         <h4>Category:  {auction.category}</h4>
                                         <h4>Starting Price: {auction.price}$</h4>
                                     </div>
-                                    <article>
+                                    <div className="details-content">
                                         <p>
                                             {auction.summary}
                                         </p>
-                                        {isAuthenticated && auction.bids?.length &&
-                                            (<div>Current highest bid: {`${higherBidder.bid}`}$ by {`${higherBidder.bidder.username}`}</div>)
+                                        {(isAuthenticated && auction.bids?.length)?
+                                            (<div className="current_bidders">Current highest bid: {`${higherBidder.bid}`}$ by {`${higherBidder.bidder.username}`}</div>)
+                                            :(<div className="current_bidders">No current bids</div>)
                                         }
-                                        {isAuthenticated && !auction.bids?.length &&
-                                            (<div>No current bids</div>)}
-                                    </article>
-                                    {isOwner && auction.bids?.length === 0 &&
-                                        (<Link to={`/auctions/edit/${auction._id}`}> Edit </Link>)}
+                                    </div>
+                                    {isOwner && auction.bids?.length ===0 &&
+                                        (<Link to={`/auctions/edit/${auction._id}`} className="edit-link"> Edit </Link>)}
                                     {isOwner &&
-                                        (<Link to={`/auctions/close/${auction._id}`}> Close Auction </Link>)}
+                                        (<Link to={`/auctions/close/${auction._id}`} className="close-link"> Close Auction </Link>)}
                                     {isAuthenticated && !isOwner &&
-                                        (<Link to={`/auctions/${auctionId}`} onClick={onBidClick}> Bid </Link>)}
-                                    <Link to="/auctions"> Back </Link>
+                                        (<Link to={`/auctions/${auctionId}`} className="bid-link" onClick={onBidClick}> Bid </Link>)}
+                                    <Link to="/auctions" className="back-link"> Back </Link>
                                 </div>
                             </div>
                         </div>

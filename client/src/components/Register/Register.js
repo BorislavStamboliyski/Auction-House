@@ -8,6 +8,7 @@ import * as authService from "../../services/authService";
 
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 
 export const Register = () => {
 
@@ -98,6 +99,7 @@ export const Register = () => {
                     </div>
                 </div>
             </section >
+            <Footer />
         </>
     );
 }

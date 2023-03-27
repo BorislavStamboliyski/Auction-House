@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 
 
 
@@ -56,6 +57,7 @@ export const About = () => {
                     </div>
                 </div>
             </section >
+            <Footer />
         </>
     );
 }

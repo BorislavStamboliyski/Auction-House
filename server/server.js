@@ -1322,11 +1322,13 @@
         users: {
             "35c62d76-8152-4626-8712-eeb96381bea8": {
                 email: "peter@abv.bg",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                username: 'Peter'
             },
             "847ec027-f659-4086-8032-5173e2f9c93a": {
                 email: "john@abv.bg",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                username: 'John'
             }
         },
         sessions: {
@@ -1337,7 +1339,7 @@
             "ff436770-76c5-40e2-b231-77409eda7a61": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "name": "House on the beach",
-                "category": "estate",
+                "category": "Real Estate",
                 "price": "270000",
                 "imageUrl": "https://media.vrbo.com/lodging/37000000/36250000/36247300/36247241/6af29572.c10.jpg",
                 "summary": "SeaView Beach House in Nassau, Bahamas is a stunning, open, airy, Ocean Front Property with a view that will leave you breathless. Wakeup and walk a few short steps outside the patio door and take a dip in your private pool ( non heated ) . Or a few steps further you can snorkel off the beach in the crystal clear Bahamian waters. The home is perfectly located in Saunders Beach, next to Goodmans Bay. Situated between Baha Mar and Downtown Nassau. The Bus is stopping direct in Front of the House and a ride is only $1,25 to Down Town, BahaMar , Altantis.",
@@ -1346,7 +1348,7 @@
             "1840a313-225c-416a-817a-9954d4609f7c": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "name": "SRT Trackhawk",
-                "category": "vehicles",
+                "category": "Vehicles",
                 "price": "120000",
                 "imageUrl": "https://www.avantgardewheels.com/wp-content/uploads/2021/07/jeep-srt-trackhawk-m520r-gloss-black-avant-garde-wheels-01.jpg",
                 "summary": "The 2021 Jeep Grand Cherokee Trackhawk is an expletive-inducing thrill ride that would have gotten Clark Griswold and family to Wally World a lot sooner while still doubling Sparky's swears. With a 707-hp supercharged Hellcat V-8 under the hood, it's not only the most powerful Jeep ever built, it's one of the most powerful SUVs in the world. While the Trackhawk can't keep up with most sports cars at the racetrack, it can outrun some of the best of them in a straight line. Now, it does cost roughly three times as much as a base Grand Cherokee Laredo but its prodigious performance makes its almost $90K price tag look like it's from the clearance section compared with the Porsche Cayenne Turbo and Mercedes-AMG GLE63 S. Despite its extroverted exterior and roaring exhaust note, the 2021 Grand Cherokee Trackhawk isn't all fire and brimstone. If fact, it has a leather-covered cabin, all the latest technology, useful cargo space, and the ability to tow 7200 pounds. What more could we ask for? Well, a 797-hp Redeye version would be pretty rad.",
@@ -1355,7 +1357,7 @@
             "126777f5-3277-42ad-b874-76d043b069cb": {
                 "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
                 "name": "PS5",
-                "category": "electronics",
+                "category": "Electronics",
                 "price": "1200",
                 "imageUrl": "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
                 "summary": "The PS5 is now more than two years old, and is going from strength and strength, with a bigger roster of exclusive games and a range of impressive accessories. Not only does the PS5 offer 4K gaming, it has seriously advanced haptics, a speedy SSD and immersive 3D audio. All of these and more combine to delver a console that is truly equipped for next-generation, or now current generation, gaming. There is a slight caveat in that the console is so big with a divisive design that it may not appeal to everyone. But it is nevertheless a compelling console that is well worth tracking down a PS5 restock for.",

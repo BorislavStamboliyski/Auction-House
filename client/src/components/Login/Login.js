@@ -8,7 +8,7 @@ import { loginUser } from "../../services/authService";
 
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
-
+import { Footer } from '../Footer/Footer'
 
 export const Login = () => {
 
@@ -84,6 +84,7 @@ export const Login = () => {
                     </div>
                 </div>
             </section >
+            <Footer />
         </>
     );
 }

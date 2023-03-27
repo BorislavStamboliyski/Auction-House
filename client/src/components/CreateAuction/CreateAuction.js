@@ -63,6 +63,9 @@ export const CreateAuction = () => {
                                                 <option value="estate">Real Estate</option>
                                                 <option value="vehicle">Vehicles</option>
                                                 <option value="electronics">Electronics</option>
+                                                <option value="tools">Tools and Machinery</option>
+                                                <option value="jewelry">Jewelry</option>
+                                                <option value="sporting_goods">Sporting goods and Equipment</option>
                                                 <option value="furniture">Furniture</option>
                                                 <option value="other">Other</option>
                                             </select>
@@ -86,7 +89,7 @@ export const CreateAuction = () => {
 
                                         <div className="button_form-container">
                                             <button type="submit"
-                                                className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Publish</button>
+                                                className="btn btn-success btn-block btn-lg gradient-custom-4">Publish</button>
                                         </div>
                                     </form>
 
