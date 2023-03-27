@@ -15,6 +15,8 @@ First you need to open in Command Prompt or in VScode in seperate terminal the f
 This will start server on port: 3030.[http://localhost:3030]
 
 Then you need to open folder client in VScode and start the application by running the command :
+### `npm i` ,
+so all the required packages will be dowloaded and then:
 ### `npm start`.
 It will start the appliction and open a new tab in the browser on [http://localhost:3000].
 
