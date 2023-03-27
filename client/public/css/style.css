@@ -587,3 +587,76 @@ border-radius: 2px solid;
   font-size: 20px;
 }
 /* End Footer */
+
+/* Contacts */
+.contact_section {
+  background-color: #f9f9f9;
+  margin-top: 50px;
+}
+
+.contact_section h2 {
+  font-size: 36px;
+  text-align: center;
+  color: black;
+  margin-bottom: 50px;
+  padding-right: 360px;
+}
+
+.contact_form-container {
+  margin-left: 0px;
+  margin-right: 100px;
+  padding: 40px;
+  background-color: #CFFCF9;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact_form-container input[type="text"],
+.contact_form-container input[type="email"],
+.contact_form-container input[type="tel"],
+.contact_form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+}
+
+.contact_form-container button[type="submit"] {
+  background-color: #028CB3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.contact_form-container button[type="submit"]:hover {
+  background-color: #028CB3;
+  color: black;
+}
+
+.message_input {
+  height: 100px;
+}
+
+.map_container {
+  height: 300px;
+}
+
+.map-responsive {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.map_container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* End contacs */

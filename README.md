@@ -1,15 +1,22 @@
-# auction-house
+# Online Auction House
+This project is an online platform that allows users to buy and sell items through an auction system. The platform facilitates the bidding process.
 
-How to create an account: Provide instructions on how to create an account on the auction house's website. This should include information on what personal information is required, how to verify the account, and how to set up a payment method.
+# Project Architecture
+The online auction house is built using a client-server architecture. The client is the user-facing application that runs on a web browser, while the server is the backend that manages the auction process.
 
-How to bid: Explain how to place a bid on an item, including information on the bidding process, bid increments, and bid limits.
+The aplication is built using ReactJS as Front-End. It provides a user-friendly interface for buyers and sellers to interact with the auction house. The frontend communicates with the backend through a RESTful API, which enables the client to request data from the server and receive responses in JSON format.
 
-Payment methods: Provide information on accepted payment methods, including credit cards, debit cards, and online payment services.
+For the Back-end it is used a practice server, which is managing auctions, bids and users.
 
-Shipping and handling: Explain how shipping and handling fees are calculated and how items are shipped to buyers. Provide information on tracking and delivery times.
 
-Returns and refunds: Explain the auction house's policy on returns and refunds. Include information on how to initiate a return, what items are eligible for a refund, and how refunds are processed.
+# Running the application
+First you need to open in Command Prompt or in VScode in seperate terminal the folder server and need to start it:
+### `node server.js`. 
+This will start server on port: 3030.[http://localhost:3030]
 
-Auction rules: Provide information on the auction rules and guidelines, including information on prohibited items, bidding etiquette, and bid retraction policies.
+Then you need to open folder client in VScode and start the application by running the command :
+### `npm start`.
+It will start the appliction and open a new tab in the browser on [http://localhost:3000].
 
-Customer support: Provide information on how to contact customer support for any questions or issues that arise during the auction process.
+# About the application
+The application have implementation for Authentication and once user is registerd hw is aoutomatically  logged in.When the user is authenticated, he can publish his own auctions. If the user is owner of the auction he can also Edit it, if there is no bids. He can also close the auction, which will delete it from the server. However if the user is not owner of the action he has a button for bid where he can make a bid for the specific auction. Users which are not logged in can see only the basic details for the auction, they cannot make bids or even to see who is the current highest bid. Also they don't have permission to publish auctions.
