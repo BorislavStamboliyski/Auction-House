@@ -1,28 +1,26 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import { useUserContext } from "../../contexts/userContext";
 import { useForm } from "../../hooks/useForm";
 import * as auctionService from '../../services/auctionService'
 
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
+import { useAuctionContext } from "../../contexts/auctionContext";
 
 
 export const EditAuction = () => {
 
-    const { token } = useUserContext();
+    const {onEditAuctionSubmit, error} = useAuctionContext();
     const { auctionId } = useParams();
-    const navigate = useNavigate();
-    const [error, setError] = useState(false);
-
-    const { formValues, onChangeHandler, changeFormValues } = useForm({
+    const { formValues, onChangeHandler, onSubmit, changeFormValues } = useForm({
+        _id: '',
         name: '',
         category: '',
         price: '',
         imageUrl: '',
         summary: '',
-    });
+    }, onEditAuctionSubmit);
 
 
     useEffect(() => {
@@ -32,22 +30,6 @@ export const EditAuction = () => {
             }
             )
     }, [auctionId])
-
-    const onSubmitClick = async (e) => {
-        e.preventDefault();
-
-        if (formValues.name !== '' && formValues.category !== '' && formValues.price !== '' && formValues.imageUrl !== '' && formValues.summary !== '') {
-            await auctionService.editAuction(formValues, auctionId, token);
-            navigate(`/auctions/${auctionId}`);
-            setError(false);
-        } else {
-            setError(true);
-        }
-    }
-
-    const onOkClick = () => {
-        setError(false)
-    }
 
     return (
         <><Header />
@@ -60,8 +42,8 @@ export const EditAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Edit Your Auction</h2>
-                                        {error && <Error onOkClick={onOkClick} />}
-                                        <form onSubmit={onSubmitClick}>
+                                        {error && <Error/>}
+                                        <form onSubmit={onSubmit}>
 
                                             <div className="form-outline mb-4">
                                                 <input type="text" id="form3Example1cg" name="name" className="form-control form-control-lg" value={formValues.name} onChange={onChangeHandler} />

@@ -1,27 +1,27 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { useUserContext } from "../../contexts/userContext";
 import { useForm } from "../../hooks/useForm";
 import * as auctionService from '../../services/auctionService'
 
 import { Header } from "../Header/Header";
+import { useAuctionContext } from "../../contexts/auctionContext";
 
 
 
 export const CloseAuction = () => {
 
-    const { token } = useUserContext();
+    const {onDeleteAuctionSubmit} = useAuctionContext();
     const { auctionId } = useParams();
-    const navigate = useNavigate();
 
-    const { formValues, changeFormValues } = useForm({
+    const { formValues, changeFormValues, onSubmit } = useForm({
+        _id: '', 
         name: '',
         category: '',
         price: '',
         imageUrl: '',
         summary: '',
-    });
+    },onDeleteAuctionSubmit);
 
 
     useEffect(() => {
@@ -32,13 +32,7 @@ export const CloseAuction = () => {
             )
     }, [auctionId])
 
-    const onSubmitClick = async (e) => {
-        e.preventDefault();
-
-
-        await auctionService.closeAuction(auctionId, token);
-        navigate(`/auctions`);
-    }
+   
 
     return (
         <>
@@ -52,7 +46,7 @@ export const CloseAuction = () => {
                                 <div className="card-body p-5">
                                     <h2 className="text-uppercase text-center mb-5">Closing This Auction</h2>
 
-                                    <form onSubmit={onSubmitClick}>
+                                    <form onSubmit={onSubmit}>
 
                                         <div className="form-outline mb-4">
                                             <input type="text" id="form3Example1cg" name="name" className="form-control form-control-lg" value={formValues.name} disabled />

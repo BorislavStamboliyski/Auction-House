@@ -36,6 +36,25 @@ export const AuctionProvider = ({
 
     }
 
+    const onEditAuctionSubmit = async (data) => {
+
+        if (data.name !== '' && data.category !== '' && data.price !== '' && data.imageUrl !== '' && data.summary !== '') {
+            const result = await auctionService.editAuction(data, data._id, token);
+            setAuctions(state => state.map(x => x._id === data._id ? result : x))
+            navigate(`/auctions/${data._id}`);
+        } else {
+            setError(true);
+        }
+    }
+
+    const onDeleteAuctionSubmit = async (data) => {
+         
+        await auctionService.closeAuction(data._id, token);
+        setAuctions(state => state.filter(auction => auction._id !== data._id))
+        navigate(`/auctions`);
+    }
+
+
     const onOkClick = () => {
         setError(false)
     }
@@ -44,6 +63,8 @@ export const AuctionProvider = ({
         auctions,
         error,
         onCreateAuctionSubmit,
+        onEditAuctionSubmit,
+        onDeleteAuctionSubmit,
         onOkClick
     }
 
