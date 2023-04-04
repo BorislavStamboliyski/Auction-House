@@ -7,17 +7,34 @@ import Modal from 'react-bootstrap/Modal';
 
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
+import { useForm } from "../../hooks/useForm";
 
 
 
 export const Contacts = () => {
 
     const [msg, Setmsg] = useState(false);
+    const [error, setError] = useState(false);
+    const {formValues, onChangeHandler} = useForm({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+    });
+
     const navigate = useNavigate()
 
     const onSubmitClick = (e) => {
         e.preventDefault();
-        Setmsg(true);
+        if(formValues.name === '' || formValues.email === '' || formValues.phone === '' || formValues.message === ''){
+            setError(true);
+        } else {
+            Setmsg(true);
+        }
+    }
+
+    const onOkErrorClick = () => {
+        setError(false);
     }
 
     const onOkClick = () => {
@@ -40,6 +57,17 @@ export const Contacts = () => {
                             </div>
                         </div>
                     </div>
+                    {error && (<div className="error_overlay">
+            <div className="error_overlay_content">
+                <div className="error_message">All fields are required!
+                    <div className="error-bidding-button" >
+                        <Button variant="primary" type="button" onClick={onOkErrorClick}>
+                            OK
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>)}
                     {msg && (<Modal.Dialog className="contact-dialog" style={{
                         display: "flex",
                         alignItems: "center",
@@ -66,16 +94,16 @@ export const Contacts = () => {
                                     <div className="contact_form-container">
                                         <div>
                                             <div>
-                                                <input type="text" placeholder="Full Name" />
+                                                <input type="text" name="name" placeholder="Full Name" value={formValues.name} onChange={onChangeHandler} />
                                             </div>
                                             <div>
-                                                <input type="email" placeholder="Email" />
+                                                <input type="email" name="email" placeholder="Email" value={formValues.email} onChange={onChangeHandler} />
                                             </div>
                                             <div>
-                                                <input type="text" placeholder="Phone Number" />
+                                                <input type="text" name="phone" placeholder="Phone Number" value={formValues.phone} onChange={onChangeHandler} />
                                             </div>
                                             <div>
-                                                <input type="text" className="message_input" placeholder="Message" />
+                                                <input type="text" name="message" className="message_input" placeholder="Message" value={formValues.message} onChange={onChangeHandler} />
                                             </div>
                                             <div>
                                                 <button type="submit">
