@@ -1,14 +1,21 @@
 import { useState } from "react"
 
 
-export const useForm = (initialState) => {
+export const useForm = (initialState, onSubmitHandler) => {
 
     const [formValues, setFormValues] = useState(initialState);
 
     const onChangeHandler = (e) => {
-        setFormValues(state => ({...state, [e.target.name] : e.target.value } ) )
+        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        onSubmitHandler(formValues)
+
+        setFormValues(initialState)
+    }
 
     const changeFormValues = (newValues) => {
 
@@ -16,6 +23,13 @@ export const useForm = (initialState) => {
         setFormValues(newValues)
     }
 
-    return {formValues, onChangeHandler, changeFormValues}
+
+
+    return {
+        formValues,
+        onChangeHandler,
+        onSubmit,
+        changeFormValues
+    }
 
 }

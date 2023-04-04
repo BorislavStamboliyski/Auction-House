@@ -1,32 +1,22 @@
-import { useState, useEffect } from "react";
-
-import * as auctionService from '../../services/auctionService'
 
 import { AuctionItems } from "./AuctionItems/AuctionItems";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { useAuctionContext } from "../../contexts/auctionContext";
 
 
 
 
 export const Auctions = () => {
 
-    const [auctions, setAuctions] = useState([]);
-
-    useEffect(() => {
-        auctionService.getAll()
-            .then(result => {
-                setAuctions(result)
-            });
-    }, []);
-
+    const {auctions} = useAuctionContext();
+    
     return (
         <>
         <Header/>
         <section className="auction_section layout_padding">
             <div className="container">
                 <div className="heading_container">
-                    <hr />
                     <h2>
                         Auctions
                     </h2>

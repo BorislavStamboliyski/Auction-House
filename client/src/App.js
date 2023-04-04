@@ -15,6 +15,7 @@ import { CreateAuction } from "./components/CreateAuction/CreateAuction";
 import { EditAuction } from "./components/EditAuction/EditAucttion";
 import { CloseAuction } from "./components/CloseAuction/CloseAuction";
 import { RouteGuard } from './components/common/RouteGuard';
+import { AuctionProvider } from './contexts/auctionContext';
 
 function App() {
 
@@ -23,26 +24,24 @@ function App() {
     return (
 
         <UserProvider>
-            <div className="App">
-
-                <Routes>
-                    <Route path="/" element={< Home />} />
-                    <Route path="/about" element={< About />} />
-                    <Route path="/contacts" element={< Contacts />} />
-                    <Route path="/auctions" element={< Auctions />} />
-                    <Route path="/auctions/:auctionId" element={< AuctionDetails />} />
-                    <Route element={<RouteGuard />}>
-                        <Route path="/auctions/create" element={< CreateAuction />} />
-                        <Route path="/auctions/edit/:auctionId" element={< EditAuction />} />
-                        <Route path="/auctions/close/:auctionId" element={< CloseAuction />} />
-                    </Route>
-                    <Route path="/register" element={< Register />} />
-                    <Route path="/login" element={<Login />} />
-
-                </Routes>
-
-
-            </div>
+            <AuctionProvider>
+                <div className="App">
+                    <Routes>
+                        <Route path="/" element={< Home />} />
+                        <Route path="/about" element={< About />} />
+                        <Route path="/contacts" element={< Contacts />} />
+                        <Route path="/auctions" element={< Auctions />} />
+                        <Route path="/auctions/:auctionId" element={< AuctionDetails />} />
+                        <Route element={<RouteGuard />}>
+                            <Route path="/auctions/create" element={< CreateAuction />} />
+                            <Route path="/auctions/edit/:auctionId" element={< EditAuction />} />
+                            <Route path="/auctions/close/:auctionId" element={< CloseAuction />} />
+                        </Route>
+                        <Route path="/register" element={< Register />} />
+                        <Route path="/login" element={<Login />} />
+                    </Routes>
+                </div>
+            </AuctionProvider>
         </UserProvider>
     );
 }
