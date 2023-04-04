@@ -4,6 +4,7 @@ import * as auctionService from '../../services/auctionService'
 
 import { AuctionItems } from "./AuctionItems/AuctionItems";
 import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 
 
 
@@ -40,6 +41,7 @@ export const Auctions = () => {
                 </div>
             </div>
         </section>
+        <Footer/>
         </>
     );
 }

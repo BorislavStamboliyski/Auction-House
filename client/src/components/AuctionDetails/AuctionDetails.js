@@ -10,6 +10,7 @@ import * as bidService from '../../services/bidService'
 import { Bid } from './Bids/Bid'
 import { auctionReducer } from "../../reducers/auctionReducer";
 import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 
 
 export const AuctionDetails = () => {
@@ -127,6 +128,7 @@ export const AuctionDetails = () => {
                                         <h4>Starting Price: {auction.price}$</h4>
                                     </div>
                                     <div className="details-content">
+                                        <h4>Summary:</h4>
                                         <p>
                                             {auction.summary}
                                         </p>
@@ -147,6 +149,7 @@ export const AuctionDetails = () => {
                         </div>
                     </div>
                 </section>
+                <Footer/>
             </>
             );
 }
