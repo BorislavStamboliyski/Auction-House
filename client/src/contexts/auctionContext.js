@@ -13,8 +13,10 @@ export const AuctionProvider = ({
 
     const [auctions, setAuctions] = useState([]);
     const [error, setError] = useState(false);
+    const [serverError, setServerError] = useState(false);
+
     const { token } = useUserContext();
-    
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,10 +28,16 @@ export const AuctionProvider = ({
 
     const onCreateAuctionSubmit = async (data) => {
         if (data.name !== '' && data.category !== '' && data.price !== '' && data.imageUrl !== '' && data.summary !== '') {
-            const newAuction = await auctionService.createAuction(data, token);
-            setAuctions(state => [...state, newAuction])
 
-            navigate('/auctions');
+            try {
+                const newAuction = await auctionService.createAuction(data, token);
+                setAuctions(state => [...state, newAuction])
+
+                navigate('/auctions');
+            } catch (err) {
+                setServerError(err.message)
+            }
+
         } else {
             setError(true)
         }
@@ -39,28 +47,41 @@ export const AuctionProvider = ({
     const onEditAuctionSubmit = async (data) => {
 
         if (data.name !== '' && data.category !== '' && data.price !== '' && data.imageUrl !== '' && data.summary !== '') {
-            const result = await auctionService.editAuction(data, data._id, token);
-            setAuctions(state => state.map(x => x._id === data._id ? result : x))
-            navigate(`/auctions/${data._id}`);
+
+            try {
+                const result = await auctionService.editAuction(data, data._id, token);
+                setAuctions(state => state.map(x => x._id === data._id ? result : x))
+                navigate(`/auctions/${data._id}`);
+            } catch (err) {
+                setServerError(err.message)
+            }
+
         } else {
             setError(true);
         }
     }
 
     const onDeleteAuctionSubmit = async (data) => {
-         
-        await auctionService.closeAuction(data._id, token);
-        setAuctions(state => state.filter(auction => auction._id !== data._id))
-        navigate(`/auctions`);
+
+        try {
+            await auctionService.closeAuction(data._id, token);
+            setAuctions(state => state.filter(auction => auction._id !== data._id))
+            navigate(`/auctions`);
+        } catch (err) {
+            setServerError(err.message)
+        }
+        
     }
 
 
     const onOkClick = () => {
         setError(false)
+        setServerError(false)
     }
 
     const contextValues = {
         auctions,
+        serverError,
         error,
         onCreateAuctionSubmit,
         onEditAuctionSubmit,

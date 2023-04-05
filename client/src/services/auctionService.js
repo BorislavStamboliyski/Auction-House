@@ -5,35 +5,56 @@ const baseUrl = 'http://localhost:3030/data/auctions'
 
 export const getAll = async () => {
 
-    const auctions = await requester.get(baseUrl);
+    try {
+        const auctions = await requester.get(baseUrl);
 
-    
-    return auctions;
+        return auctions;
+    } catch (err) {
+        throw err
+    }
+
 
 }
 
 
 export const getAuction = async (auctionId) => {
-   
-    const auction = await requester.get(`${baseUrl}/${auctionId}`);
 
-    return auction;
+    try {
+        const auction = await requester.get(`${baseUrl}/${auctionId}`);
+
+        return auction;
+    } catch (err) {
+        throw err
+    }
+
+
 }
 
 
 export const createAuction = async (data, token) => {
-   
-    const auction = await requester.post(baseUrl, data, token);
 
-    return auction;
+    try {
+        const auction = await requester.post(baseUrl, data, token);
+
+        return auction;
+    } catch (err) {
+        throw err
+    }
+
+    
 }
 
 
-export const editAuction = async (data, auctionId ,token) => {
+export const editAuction = async (data, auctionId, token) => {
 
-    const auction = await requester.put(`${baseUrl}/${auctionId}`, data, token);
+    try {
+        const auction = await requester.put(`${baseUrl}/${auctionId}`, data, token);
 
-    return auction;
+        return auction;
+    } catch (err) {
+        throw err
+    }
+
 
 }
 
@@ -41,7 +62,10 @@ export const editAuction = async (data, auctionId ,token) => {
 
 export const closeAuction = async (auctionId, token) => {
 
-    await requester.del(`${baseUrl}/${auctionId}`,null, token);
-
+    try {
+        await requester.del(`${baseUrl}/${auctionId}`, null, token);
+    } catch (err) {
+        throw err
+    }
 }
 

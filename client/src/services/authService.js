@@ -5,16 +5,25 @@ const baseurl = "http://localhost:3030/users"
 
 export const registerUser = async (data) => {
 
-    const user = await request.post(`${baseurl}/register`, data);
+    try {
+        const user = await request.post(`${baseurl}/register`, data);
     
-    return user;
+        return user;
+    } catch(err) {
+        throw err
+    }   
 }
 
 export const loginUser = async (data) => {
 
-        const user = await request.post(`${baseurl}/login`, data);
+        try{
+            const user = await request.post(`${baseurl}/login`, data);
+            return user;
 
-        return user;
+        } catch(err) {
+            throw err
+        }
+
    
 }
 

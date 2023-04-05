@@ -24,16 +24,26 @@ const request = async (method, url, data, token) => {
     }
 
    
-
-        const response = await fetch(url, options);
-        if (response.status === 204) {
-            return;
-        }
+        try {
+            const response = await fetch(url, options);
+            if (response.status === 204) {
+                return;
+            }
+            
+            
+            const result = await response.json();
         
-        const result = await response.json();
+            if(response.ok === false) {
+                
+                throw new Error(result.message);
+            }
+            
+            return result;
     
-        return result;
-
+        } catch (err) {
+          throw err
+        }
+      
     
 
 }

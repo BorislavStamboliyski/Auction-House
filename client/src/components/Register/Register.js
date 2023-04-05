@@ -7,10 +7,11 @@ import { useForm } from "../../hooks/useForm";
 import { AuthError } from "../Error/AuthError";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { ServerError } from "../Error/ServerError";
 
 export const Register = () => {
 
-    const { onRegisterSubmitClick, error } = useUserContext();
+    const { onRegisterSubmitClick, serverError, error } = useUserContext();
 
     const { formValues, onChangeHandler, onSubmit } = useForm({
         username: '',
@@ -34,6 +35,7 @@ export const Register = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Create an account</h2>
+                                        {serverError && <ServerError/>}
                                         {error && <AuthError/>}
                                         <form onSubmit={onSubmit}>
 

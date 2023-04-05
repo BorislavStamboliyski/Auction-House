@@ -7,11 +7,12 @@ import * as auctionService from '../../services/auctionService'
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
 import { useAuctionContext } from "../../contexts/auctionContext";
+import { ServerErrorAuctions } from "../Error/ServerErrorAuctions";
 
 
 export const EditAuction = () => {
 
-    const { onEditAuctionSubmit, error } = useAuctionContext();
+    const { onEditAuctionSubmit, serverError, error } = useAuctionContext();
     const { auctionId } = useParams();
     const { formValues, onChangeHandler, onSubmit, changeFormValues } = useForm({
         _id: '',
@@ -42,6 +43,7 @@ export const EditAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Edit Your Auction</h2>
+                                        {serverError && <ServerErrorAuctions/>}
                                         {error && <Error />}
                                         <form onSubmit={onSubmit}>
 

@@ -6,10 +6,11 @@ import { useForm } from "../../hooks/useForm";
 import { AuthError } from "../Error/AuthError";
 import { Header } from "../Header/Header";
 import { Footer } from '../Footer/Footer'
+import { ServerError } from "../Error/ServerError";
 
 export const Login = () => {
 
-    const { onLoginSubmitClick, error } = useUserContext();
+    const { onLoginSubmitClick, serverError, error } = useUserContext();
     
     const { formValues, onChangeHandler, onSubmit } = useForm({
         email: '',
@@ -20,7 +21,6 @@ export const Login = () => {
     return (
         <>
             <Header />
-
             <section className="vh-100 bg-image">
                 <div className="mask d-flex align-items-center h-100 gradient-custom-3">
                     <div className="container h-100">
@@ -30,6 +30,7 @@ export const Login = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Login</h2>
+                                        {serverError && <ServerError/>}
                                         {error && <AuthError />}
                                         <form onSubmit={onSubmit}>
                                             <div className="form-outline mb-4">

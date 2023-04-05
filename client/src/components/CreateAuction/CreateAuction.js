@@ -3,10 +3,11 @@ import { useForm } from "../../hooks/useForm";
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
 import { useAuctionContext } from "../../contexts/auctionContext";
+import { ServerErrorAuctions } from "../Error/ServerErrorAuctions";
 
 export const CreateAuction = () => {
 
-    const { onCreateAuctionSubmit, error } = useAuctionContext();
+    const { onCreateAuctionSubmit, serverError, error } = useAuctionContext();
 
     const { formValues, onChangeHandler, onSubmit } = useForm({
         name: '',
@@ -28,7 +29,8 @@ export const CreateAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Publish an Auction</h2>
-                                        {error && (<Error />)}
+                                        {error && <Error />}
+                                        {serverError && <ServerErrorAuctions/>}
                                         <form onSubmit={onSubmit}>
 
                                             <div className="form-outline mb-4">
