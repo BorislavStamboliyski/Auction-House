@@ -1,48 +1,25 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import { useUserContext } from "../../contexts/userContext";
 import { useForm } from "../../hooks/useForm";
-import * as authService from "../../services/authService";
 
-import { Error } from "../Error/Error";
+
+import { AuthError } from "../Error/AuthError";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 
 export const Register = () => {
 
-    const { onLogin } = useUserContext();
-    const [error, setError] = useState(false);
-    const { formValues, onChangeHandler } = useForm({
+    const { onRegisterSubmitClick, error } = useUserContext();
+
+    const { formValues, onChangeHandler, onSubmit } = useForm({
         username: '',
         email: '',
         password: '',
         repeatPassword: ''
-    })
+    }, onRegisterSubmitClick)
 
-    const navigate = useNavigate();
-
-    const onSubmitClick = async (e) => {
-        e.preventDefault();
-        if (formValues.username.length !== 0 &&
-            formValues.email.length !== 0 &&
-            formValues.password.length !== 0 &&
-            formValues.repeatPassword !== 0 &&
-            formValues.password === formValues.repeatPassword) {
-            const { repeatPassword, ...data } = formValues
-            const user = await authService.registerUser(data);
-            onLogin(user);
-            navigate('/')
-            setError(false)
-        } else {
-            setError(true);
-        }
-    }
-
-    const onOkClick = () => {
-        setError(false);
-    }
+ 
 
     return (
         <>
@@ -57,8 +34,8 @@ export const Register = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Create an account</h2>
-                                        {error && <Error onOkClick={onOkClick} />}
-                                        <form onSubmit={onSubmitClick}>
+                                        {error && <AuthError/>}
+                                        <form onSubmit={onSubmit}>
 
                                             <div className="form-outline mb-4">
                                                 <input type="text" id="form3Example1cg" name="username" className="form-control form-control-lg" value={formValues.username} onChange={onChangeHandler} />
@@ -79,8 +56,6 @@ export const Register = () => {
                                                 <input type="password" id="form3Example4cdg" name="repeatPassword" className="form-control form-control-lg" value={formValues.repeatPassword} onChange={onChangeHandler} />
                                                 <label className="form-label" htmlFor="form3Example4cdg">Repeat your password</label>
                                             </div>
-
-
 
                                             <div className="button_form-container">
                                                 <button type="submit"

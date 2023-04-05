@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 import * as authService from '../services/authService' 
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -9,11 +10,34 @@ export const UserProvider = ({
 }) => {
 
     const [user, setUser] = useState({});
+    const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
+    const onLoginSubmitClick = async (data) => {
 
-    const onLogin =  (result) => {
-      
-        setUser(result);
+        if (data.email && data.password) {
+            const result = await authService.loginUser(data);
+            setUser(result);
+            navigate('/');
+        } else {
+            setError(true)
+        }
+
+    }
+    
+    const onRegisterSubmitClick = async (values) => {
+        if (values.username.length !== 0 &&
+            values.email.length !== 0 &&
+            values.password.length !== 0 &&
+            values.repeatPassword !== 0 &&
+            values.password === values.repeatPassword) {
+            const { repeatPassword, ...data } = values
+            const user = await authService.registerUser(data);
+            setUser(user);
+            navigate('/')
+        } else {
+            setError(true);
+        }
     }
 
     const onLogout =  () =>{
@@ -21,11 +45,17 @@ export const UserProvider = ({
         setUser({});
     }
 
+    const onOkClick = () => {
+        setError(false);
+    }
 
 
     const contextValues = {
-        onLogin,
+        onLoginSubmitClick,
+        onRegisterSubmitClick,
         onLogout,
+        onOkClick,
+        error,
         userId: user._id,
         token: user.accessToken,
         username: user.username,
