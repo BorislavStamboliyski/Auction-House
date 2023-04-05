@@ -11,7 +11,7 @@ import { useAuctionContext } from "../../contexts/auctionContext";
 
 export const EditAuction = () => {
 
-    const {onEditAuctionSubmit, error} = useAuctionContext();
+    const { onEditAuctionSubmit, error } = useAuctionContext();
     const { auctionId } = useParams();
     const { formValues, onChangeHandler, onSubmit, changeFormValues } = useForm({
         _id: '',
@@ -42,7 +42,7 @@ export const EditAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Edit Your Auction</h2>
-                                        {error && <Error/>}
+                                        {error && <Error />}
                                         <form onSubmit={onSubmit}>
 
                                             <div className="form-outline mb-4">
@@ -53,14 +53,14 @@ export const EditAuction = () => {
                                             <div className="form-outline mb-4">
                                                 <label className="form-label" htmlFor="form3Example3cg">Category:</label>
                                                 <select id="form3Example3cg" name="category" className="form-control form-control-lg" value={formValues.category} onChange={onChangeHandler} >
-                                                    <option value="estate">Real Estate</option>
-                                                    <option value="vehicle">Vehicles</option>
-                                                    <option value="electronics">Electronics</option>
-                                                    <option value="tools">Tools and Machinery</option>
-                                                    <option value="jewelry">Jewelry</option>
-                                                    <option value="sporting_goods">Sporting goods and Equipment</option>
-                                                    <option value="furniture">Furniture</option>
-                                                    <option value="other">Other</option>
+                                                    <option value="Real Estate">Real Estate</option>
+                                                    <option value="Vehicles">Vehicles</option>
+                                                    <option value="Electronics">Electronics</option>
+                                                    <option value="Tools and Machinery">Tools and Machinery</option>
+                                                    <option value="Jewelry">Jewelry</option>
+                                                    <option value="Sporting goods and Equipment">Sporting goods and Equipment</option>
+                                                    <option value="Furniture">Furniture</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
                                             </div>
 

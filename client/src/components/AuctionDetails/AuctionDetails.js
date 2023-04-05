@@ -90,7 +90,6 @@ export const AuctionDetails = () => {
         higherBidder = auction.bids.reduce((prev, curr) => Number(prev.bid) > Number(curr.bid) ? prev : curr);
     }
 
-    console.log(isAuthenticated)
 
     return (
         <>
@@ -138,7 +137,7 @@ export const AuctionDetails = () => {
                                             auction.bids?.length ?
                                             <div className="current_bidders">Current highest bid: {`${higherBidder.bid}`}$ by {`${higherBidder.bidder.username}`}</div>
                                             :<div className="current_bidders">No current bids</div>
-                                            : (<p className="text-center text-muted mt-5 mb-0">To participate in bidding Log in first! <Link to="/login"
+                                            : (<p className="text-center mt-5 mb-0">To participate in bidding Log in first! <Link to="/login"
                                             className="fw-bold text-body"><u>Login here</u></Link></p>)
                                         }
                                     </div>

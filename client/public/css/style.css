@@ -337,6 +337,17 @@
   transition: all 0.3s;
 }
 
+.filter {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.no_auction {
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 200px;
+}
+
 .auction_section .auction_container .box .link_box h5 {
   text-transform: uppercase;
   margin-bottom: 25px;

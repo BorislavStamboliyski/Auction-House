@@ -39,14 +39,14 @@ export const CreateAuction = () => {
                                             <div className="form-outline mb-4">
                                                 <label className="form-label" htmlFor="form3Example3cg">Category:</label>
                                                 <select id="form3Example3cg" name="category" className="form-control form-control-lg" value={formValues.category} onChange={onChangeHandler} >
-                                                    <option value="estate">Real Estate</option>
-                                                    <option value="vehicle">Vehicles</option>
-                                                    <option value="electronics">Electronics</option>
-                                                    <option value="tools">Tools and Machinery</option>
-                                                    <option value="jewelry">Jewelry</option>
-                                                    <option value="sporting_goods">Sporting goods and Equipment</option>
-                                                    <option value="furniture">Furniture</option>
-                                                    <option value="other">Other</option>
+                                                    <option value="Real Estate">Real Estate</option>
+                                                    <option value="Vehicles">Vehicles</option>
+                                                    <option value="Electronics">Electronics</option>
+                                                    <option value="Tools and Machinery">Tools and Machinery</option>
+                                                    <option value="Jewelry">Jewelry</option>
+                                                    <option value="Sporting goods and Equipment">Sporting goods and Equipment</option>
+                                                    <option value="Furniture">Furniture</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
                                             </div>
 
