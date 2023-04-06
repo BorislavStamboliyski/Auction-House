@@ -22,11 +22,11 @@ export const UserProvider = ({
                 setUser(result);
                 navigate('/');
             } catch (err) {
-                setServerError(err.message)
+                errorHandler(err);
             }
 
         } else {
-            setError(true)
+            errorHandler();
         }
 
     }
@@ -43,10 +43,10 @@ export const UserProvider = ({
                 setUser(user);
                 navigate('/');
             } catch (err) {
-                setServerError(err.message)
+                errorHandler(err)
             }
         } else {
-            setError(true);
+            errorHandler();
         }
     }
 
@@ -55,9 +55,16 @@ export const UserProvider = ({
         setUser({});
     }
 
+    const errorHandler = (err) => {
+        if(err) {
+            return setServerError(err.message);
+        } 
+        return setError(true);
+    }
+
     const onOkClick = () => {
         setError(false);
-        setServerError(false)
+        setServerError(false);
     }
 
 
@@ -65,6 +72,7 @@ export const UserProvider = ({
         onLoginSubmitClick,
         onRegisterSubmitClick,
         onLogout,
+        errorHandler,
         onOkClick,
         error,
         serverError,

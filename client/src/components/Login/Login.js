@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { useUserContext } from "../../contexts/userContext";
 import { useForm } from "../../hooks/useForm";
 
-import { AuthError } from "../Error/AuthError";
+import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
 import { Footer } from '../Footer/Footer'
-import { ServerError } from "../Error/ServerError";
 
 export const Login = () => {
 
@@ -30,8 +29,7 @@ export const Login = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Login</h2>
-                                        {serverError && <ServerError/>}
-                                        {error && <AuthError />}
+                                        {(error || serverError) && <Error />}
                                         <form onSubmit={onSubmit}>
                                             <div className="form-outline mb-4">
                                                 <input type="email" id="form3Example3cg" name="email" className="form-control form-control-lg" value={formValues.email} onChange={onChangeHandler} />

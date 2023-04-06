@@ -12,10 +12,9 @@ export const AuctionProvider = ({
 }) => {
 
     const [auctions, setAuctions] = useState([]);
-    const [error, setError] = useState(false);
-    const [serverError, setServerError] = useState(false);
+    
 
-    const { token } = useUserContext();
+    const { errorHandler, token } = useUserContext();
 
     const navigate = useNavigate();
 
@@ -35,11 +34,11 @@ export const AuctionProvider = ({
 
                 navigate('/auctions');
             } catch (err) {
-                setServerError(err.message)
+                errorHandler(err)
             }
 
         } else {
-            setError(true)
+            errorHandler();
         }
 
     }
@@ -53,11 +52,11 @@ export const AuctionProvider = ({
                 setAuctions(state => state.map(x => x._id === data._id ? result : x))
                 navigate(`/auctions/${data._id}`);
             } catch (err) {
-                setServerError(err.message)
+                errorHandler(err)
             }
 
         } else {
-            setError(true);
+            errorHandler();
         }
     }
 
@@ -68,25 +67,18 @@ export const AuctionProvider = ({
             setAuctions(state => state.filter(auction => auction._id !== data._id))
             navigate(`/auctions`);
         } catch (err) {
-            setServerError(err.message)
+            errorHandler(err)
         }
         
     }
 
 
-    const onOkClick = () => {
-        setError(false)
-        setServerError(false)
-    }
 
     const contextValues = {
         auctions,
-        serverError,
-        error,
         onCreateAuctionSubmit,
         onEditAuctionSubmit,
         onDeleteAuctionSubmit,
-        onOkClick
     }
 
 

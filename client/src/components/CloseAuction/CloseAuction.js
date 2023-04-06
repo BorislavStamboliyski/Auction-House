@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { useAuctionContext } from "../../contexts/auctionContext";
+import { useUserContext } from "../../contexts/userContext";
 import { useForm } from "../../hooks/useForm";
 import * as auctionService from '../../services/auctionService'
 
 import { Header } from "../Header/Header";
-import { useAuctionContext } from "../../contexts/auctionContext";
-import { ServerErrorAuctions } from "../Error/ServerErrorAuctions";
-
+import { Error } from "../Error/Error";
 
 
 export const CloseAuction = () => {
 
-    const { onDeleteAuctionSubmit, serverError } = useAuctionContext();
+    const { onDeleteAuctionSubmit } = useAuctionContext();
+    const {error, serverError} = useUserContext();
     const { auctionId } = useParams();
 
     const { formValues, changeFormValues, onSubmit } = useForm({
@@ -46,7 +47,7 @@ export const CloseAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Closing This Auction</h2>
-                                        {serverError && <ServerErrorAuctions/>}
+                                        {(error || serverError) && <Error/>}
 
                                         <form onSubmit={onSubmit}>
 

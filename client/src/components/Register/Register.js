@@ -4,10 +4,10 @@ import { useUserContext } from "../../contexts/userContext";
 import { useForm } from "../../hooks/useForm";
 
 
-import { AuthError } from "../Error/AuthError";
+import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
-import { ServerError } from "../Error/ServerError";
+
 
 export const Register = () => {
 
@@ -35,8 +35,7 @@ export const Register = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Create an account</h2>
-                                        {serverError && <ServerError/>}
-                                        {error && <AuthError/>}
+                                        {(error || serverError) && <Error />}
                                         <form onSubmit={onSubmit}>
 
                                             <div className="form-outline mb-4">
