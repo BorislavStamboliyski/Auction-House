@@ -14,7 +14,7 @@ export const AuctionProvider = ({
     const [auctions, setAuctions] = useState([]);
     
 
-    const { errorHandler, token } = useUserContext();
+    const { errorHandler, token, onLoading } = useUserContext();
 
     const navigate = useNavigate();
 
@@ -29,11 +29,13 @@ export const AuctionProvider = ({
         if (data.name !== '' && data.category !== '' && data.price !== '' && data.imageUrl !== '' && data.summary !== '') {
 
             try {
+                onLoading();
                 const newAuction = await auctionService.createAuction(data, token);
                 setAuctions(state => [...state, newAuction])
-
+                onLoading();
                 navigate('/auctions');
             } catch (err) {
+                onLoading();
                 errorHandler(err)
             }
 
@@ -48,11 +50,14 @@ export const AuctionProvider = ({
         if (data.name !== '' && data.category !== '' && data.price !== '' && data.imageUrl !== '' && data.summary !== '') {
 
             try {
+                onLoading();
                 const result = await auctionService.editAuction(data, data._id, token);
-                setAuctions(state => state.map(x => x._id === data._id ? result : x))
+                setAuctions(state => state.map(x => x._id === data._id ? result : x));
+                onLoading();
                 navigate(`/auctions/${data._id}`);
             } catch (err) {
-                errorHandler(err)
+                onLoading();
+                errorHandler(err);
             }
 
         } else {
@@ -63,11 +68,14 @@ export const AuctionProvider = ({
     const onDeleteAuctionSubmit = async (data) => {
 
         try {
+            onLoading();
             await auctionService.closeAuction(data._id, token);
-            setAuctions(state => state.filter(auction => auction._id !== data._id))
+            setAuctions(state => state.filter(auction => auction._id !== data._id));
+            onLoading();
             navigate(`/auctions`);
         } catch (err) {
-            errorHandler(err)
+            onLoading();
+            errorHandler(err);
         }
         
     }

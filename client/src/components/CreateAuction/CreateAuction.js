@@ -5,12 +5,13 @@ import { useUserContext } from "../../contexts/userContext";
 
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
+import { Loader } from "../Loader/Loader";
 
 
 export const CreateAuction = () => {
 
     const { onCreateAuctionSubmit } = useAuctionContext();
-    const {serverError, error} = useUserContext();
+    const {serverError, error, loader} = useUserContext();
 
     const { formValues, onChangeHandler, onSubmit } = useForm({
         name: '',
@@ -32,6 +33,7 @@ export const CreateAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Publish an Auction</h2>
+                                        {loader && <Loader />}
                                         {(error || serverError) && <Error />}
                                         <form onSubmit={onSubmit}>
 

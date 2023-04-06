@@ -8,12 +8,13 @@ import * as auctionService from '../../services/auctionService'
 
 import { Header } from "../Header/Header";
 import { Error } from "../Error/Error";
+import { Loader } from "../Loader/Loader";
 
 
 export const CloseAuction = () => {
 
     const { onDeleteAuctionSubmit } = useAuctionContext();
-    const {error, serverError} = useUserContext();
+    const {error, serverError, loader} = useUserContext();
     const { auctionId } = useParams();
 
     const { formValues, changeFormValues, onSubmit } = useForm({
@@ -47,6 +48,7 @@ export const CloseAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Closing This Auction</h2>
+                                        {loader && <Loader />}
                                         {(error || serverError) && <Error/>}
 
                                         <form onSubmit={onSubmit}>

@@ -3,6 +3,9 @@ import * as requester from "./requester"
 
 const baseUrl = 'http://localhost:3030/data/auctions'
 
+
+
+
 export const getAll = async () => {
 
     try {

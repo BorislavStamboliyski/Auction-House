@@ -4,6 +4,8 @@ import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { useAuctionContext } from "../../contexts/auctionContext";
 import { useMemo, useState } from "react";
+import { useUserContext } from "../../contexts/userContext";
+import { Loader } from "../Loader/Loader";
 
 
 
@@ -12,6 +14,7 @@ export const Auctions = () => {
 
     const { auctions } = useAuctionContext();
     const [selectedCategory, setSelectedCategory] = useState();
+    const {loader} = useUserContext();
 
     const getFilterList = () => {
         if (!selectedCategory) {
@@ -35,6 +38,7 @@ export const Auctions = () => {
                         <h2>
                             Auctions
                         </h2>
+                        {loader && <Loader />}
                         <div className="filter-container">
                             <div className='filter'>Filter by Category:</div>
                             <div>

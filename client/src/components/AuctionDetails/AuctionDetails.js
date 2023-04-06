@@ -11,11 +11,12 @@ import { Bid } from './Bids/Bid'
 import { auctionReducer } from "../../reducers/auctionReducer";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { Loader } from "../Loader/Loader";
 
 
 export const AuctionDetails = () => {
 
-    const { userId, isAuthenticated, token, username } = useUserContext();
+    const { userId, isAuthenticated, token, username, loader } = useUserContext();
     const { auctionId } = useParams();
     const [auction, dispatch] = useReducer(auctionReducer, {})
     const [bidForm, setBidform] = useState(false)
@@ -90,10 +91,10 @@ export const AuctionDetails = () => {
         higherBidder = auction.bids.reduce((prev, curr) => Number(prev.bid) > Number(curr.bid) ? prev : curr);
     }
 
-
     return (
         <>
         <Header/>
+        {loader && <Loader />}
         {bidForm &&
             (<div className="overlay">
                 <div className="overlay-content">

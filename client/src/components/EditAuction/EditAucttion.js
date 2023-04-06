@@ -8,12 +8,13 @@ import { useAuctionContext } from "../../contexts/auctionContext";
 
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
+import { Loader } from "../Loader/Loader";
 
 
 export const EditAuction = () => {
 
     const { onEditAuctionSubmit } = useAuctionContext();
-    const {serverError, error } = useUserContext();
+    const {serverError, error, loader } = useUserContext();
     const { auctionId } = useParams();
     const { formValues, onChangeHandler, onSubmit, changeFormValues } = useForm({
         _id: '',
@@ -44,6 +45,7 @@ export const EditAuction = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Edit Your Auction</h2>
+                                        {loader && <Loader />}
                                         {(error || serverError) && <Error />}
                                         <form onSubmit={onSubmit}>
 

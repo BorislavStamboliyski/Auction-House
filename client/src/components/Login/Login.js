@@ -6,10 +6,11 @@ import { useForm } from "../../hooks/useForm";
 import { Error } from "../Error/Error";
 import { Header } from "../Header/Header";
 import { Footer } from '../Footer/Footer'
+import { Loader } from "../Loader/Loader";
 
 export const Login = () => {
 
-    const { onLoginSubmitClick, serverError, error } = useUserContext();
+    const { onLoginSubmitClick, serverError, error, loader } = useUserContext();
     
     const { formValues, onChangeHandler, onSubmit } = useForm({
         email: '',
@@ -29,6 +30,7 @@ export const Login = () => {
                                 <div className="card" style={{ borderRadius: "15px" }}>
                                     <div className="card-body p-5">
                                         <h2 className="text-uppercase text-center mb-5">Login</h2>
+                                        {loader && <Loader />}
                                         {(error || serverError) && <Error />}
                                         <form onSubmit={onSubmit}>
                                             <div className="form-outline mb-4">

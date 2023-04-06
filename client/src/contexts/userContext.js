@@ -12,16 +12,20 @@ export const UserProvider = ({
     const [user, setUser] = useState({});
     const [error, setError] = useState(false);
     const [serverError, setServerError] = useState(false);
+    const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
 
     const onLoginSubmitClick = async (data) => {
 
         if (data.email && data.password) {
             try {
+               onLoading();
                 const result = await authService.loginUser(data);
                 setUser(result);
+                onLoading();
                 navigate('/');
             } catch (err) {
+                onLoading();
                 errorHandler(err);
             }
 
@@ -39,10 +43,13 @@ export const UserProvider = ({
             values.password === values.repeatPassword) {
             const { repeatPassword, ...data } = values
             try {
+                onLoading();
                 const user = await authService.registerUser(data);
                 setUser(user);
+                onLoading();
                 navigate('/');
             } catch (err) {
+                onLoading();
                 errorHandler(err)
             }
         } else {
@@ -55,12 +62,18 @@ export const UserProvider = ({
         setUser({});
     }
 
+    const onLoading = () => {
+        setLoader(state => !state)
+    }
+
     const errorHandler = (err) => {
         if(err) {
             return setServerError(err.message);
         } 
         return setError(true);
     }
+
+
 
     const onOkClick = () => {
         setError(false);
@@ -74,6 +87,8 @@ export const UserProvider = ({
         onLogout,
         errorHandler,
         onOkClick,
+        onLoading,
+        loader,
         error,
         serverError,
         userId: user._id,
