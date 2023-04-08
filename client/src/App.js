@@ -16,6 +16,7 @@ import { EditAuction } from "./components/EditAuction/EditAucttion";
 import { CloseAuction } from "./components/CloseAuction/CloseAuction";
 import { RouteGuard } from './components/common/RouteGuard';
 import { AuctionProvider } from './contexts/auctionContext';
+import { NotFound } from './components/404 Page/NotFound';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
                         </Route>
                         <Route path="/register" element={< Register />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </div>
             </AuctionProvider>

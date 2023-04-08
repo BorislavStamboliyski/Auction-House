@@ -14,12 +14,10 @@ export const useForm = (initialState, onSubmitHandler) => {
 
         onSubmitHandler(formValues)
 
-        // setFormValues(initialState)
     }
 
     const changeFormValues = (newValues) => {
 
-        // To do validation if newvalues are same initial values
         setFormValues(newValues)
     }
 
